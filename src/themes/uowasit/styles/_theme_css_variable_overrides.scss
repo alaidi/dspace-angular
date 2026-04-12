@@ -1,0 +1,75 @@
+// Override or add CSS variables for your theme here
+
+:root {
+
+  // ---- Header ---------------------------------------------------------------
+  @include media-breakpoint-up(md) {
+    --ds-header-logo-height: 44px;
+    --ds-header-height: 72px;
+  }
+  @include media-breakpoint-down(sm) {
+    --ds-header-logo-height: 40px;
+    --ds-header-height: 64px;
+  }
+
+  // White header with a clean drop shadow for elevation
+  --ds-header-bg: #ffffff;
+  --ds-header-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+
+  // ---- Navbar ---------------------------------------------------------------
+  // Deep-navy-to-slightly-lighter gradient — sophisticated and professional
+  --ds-navbar-bg: linear-gradient(135deg, #{$primary} 0%, #{lighten($primary, 8%)} 100%);
+  --ds-navbar-link-color: rgba(255, 255, 255, 0.88);
+  --ds-navbar-link-color-hover: #ffffff;
+
+  // Accent stripe below navbar — bright blue pop
+  --ds-header-navbar-border-bottom-height: 3px;
+  --ds-header-navbar-border-bottom-color: #3b82f6;
+
+  // ---- Expandable mobile navbar ---------------------------------------------
+  --ds-expandable-navbar-border-top-color: rgba(255, 255, 255, 0.15);
+  --ds-expandable-navbar-border-top-height: 1px;
+  --ds-expandable-navbar-padding-top: 0.25rem;
+  --ds-expandable-navbar-bg: #{darken($primary, 4%)};
+  --ds-expandable-navbar-link-color: rgba(255, 255, 255, 0.88);
+  --ds-expandable-navbar-link-color-hover: #ffffff;
+  --ds-expandable-navbar-link-background-hover: rgba(255, 255, 255, 0.1);
+
+  // ---- Banner (home page hero) ---------------------------------------------
+  --ds-banner-text-background: rgba(15, 23, 42, 0.62);
+  --ds-banner-background-gradient-width: 400px;
+
+  // ---- Cards ----------------------------------------------------------------
+  --ds-card-shadow:       0 1px 3px rgba(0, 0, 0, 0.07), 0 1px 2px rgba(0, 0, 0, 0.05);
+  --ds-card-shadow-hover: 0 10px 30px rgba(0, 0, 0, 0.10), 0 4px 6px rgba(0, 0, 0, 0.05);
+  --ds-card-transition:   box-shadow 0.22s ease, transform 0.22s ease;
+
+  // ---- Transitions ----------------------------------------------------------
+  --ds-transition-base:   all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --ds-transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  // ---- Breadcrumb -----------------------------------------------------------
+  --ds-breadcrumb-bg: #eef2f7;
+
+  // ---- Footer ---------------------------------------------------------------
+  --ds-footer-bg:        #{$primary};
+  --ds-top-footer-bg:    #{lighten($primary, 5%)};
+  --ds-footer-border:    none;
+  --ds-footer-padding:   2rem 0;
+
+  // ---- Search ---------------------------------------------------------------
+  --ds-search-form-scope-max-width: 160px;
+
+  // ---- Admin sidebar --------------------------------------------------------
+  --ds-admin-sidebar-bg:          #{darken($primary, 5%)};
+  --ds-admin-sidebar-active-bg:   #{darken($primary, 10%)};
+  --ds-admin-sidebar-header-bg:   #{darken($primary, 12%)};
+
+  // ---- Home news section ----------------------------------------------------
+  --ds-home-news-background-color: #eef2f7;
+
+  // ---- Item page ------------------------------------------------------------
+  --ds-item-page-img-field-default-inline-height: 24px;
+  --ds-item-page-img-field-ror-inline-height: var(--ds-item-page-img-field-default-inline-height);
+}
+

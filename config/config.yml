@@ -3,3 +3,15 @@ rest:
   host: sandbox.dspace.org
   port: 443
   nameSpace: /server
+
+themes:
+  - name: uowasit   # your theme — must be first to take priority
+  - name: dspace    # fallback
+
+languages:
+  - code: en
+    label: English
+    active: true
+  - code: ar
+    label: العربية
+    active: true
