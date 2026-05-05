@@ -1,0 +1,1244 @@
+// Add any global css for the theme here
+
+// imports the base global style
+@import '../../../styles/_global-styles.scss';
+// Add any global css for the theme here
+
+
+// =============================================================================
+// Modern & Elegant Design Enhancements
+// =============================================================================
+
+// ---- Typography -------------------------------------------------------------
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+}
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  letter-spacing: -0.02em;
+}
+
+// ---- Header -----------------------------------------------------------------
+
+// #main-site-header background/sticky handled in header.component.scss
+
+// Reset <header> inside page content so it doesn't get a white box background
+ds-community-page header,
+ds-collection-page header,
+ds-item-page header {
+  background: transparent;
+  box-shadow: none;
+  position: static;
+}
+
+// ---- Navbar -----------------------------------------------------------------
+
+// Force white text on nav items inside the custom header's embedded navbar
+#main-navbar {
+  .ds-menu-item,
+  .ds-menu-toggler-wrapper {
+    color: rgba(255, 255, 255, 0.82) !important;
+  }
+
+  .ds-menu-item.active,
+  .ds-menu-toggler-wrapper.active .ds-menu-item {
+    color: #ffffff !important;
+  }
+}
+
+.navbar,
+#desktop-navbar {
+  // background: var(--ds-navbar-bg) !important;
+
+  .nav-link {
+    font-weight: 500;
+    font-size: 0.875rem;
+    letter-spacing: 0.01em;
+    // color: var(--ds-navbar-link-color) !important;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.375rem;
+    transition: background 0.15s ease, color 0.15s ease;
+
+    &:hover, &.active {
+      color: var(--ds-navbar-link-color-hover) !important;
+      background: rgba(255, 255, 255, 0.12);
+    }
+  }
+}
+
+// ---- Cards ------------------------------------------------------------------
+
+.card {
+  box-shadow: var(--ds-card-shadow);
+  border: 1px solid var(--bs-card-border-color, rgba(0, 0, 0, 0.06));
+  border-radius: var(--bs-border-radius-lg, 0.75rem);
+  transition: var(--ds-card-transition, box-shadow 0.22s ease, transform 0.22s ease);
+  overflow: hidden;
+
+  &:hover {
+    box-shadow: var(--ds-card-shadow-hover);
+    transform: translateY(-2px);
+  }
+
+  .card-header {
+    background: rgba(0, 0, 0, 0.02);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    font-weight: 600;
+    font-size: 0.9375rem;
+  }
+}
+
+// ---- Buttons ----------------------------------------------------------------
+
+.btn {
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  border-radius: 0.5rem;
+  transition: var(--ds-transition-base, all 0.2s ease);
+  position: relative;
+
+  &:not(:disabled):hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  }
+
+  &:not(:disabled):active {
+    transform: translateY(0);
+  }
+
+  &.btn-primary {
+    background: linear-gradient(135deg, $primary 0%, lighten($primary, 8%) 100%);
+    border-color: $primary;
+
+    &:hover {
+      background: linear-gradient(135deg, darken($primary, 4%) 0%, $primary 100%);
+    }
+  }
+}
+
+// ---- Forms / Inputs ---------------------------------------------------------
+
+.form-control,
+.form-select {
+  border-radius: 0.5rem;
+  border-color: #cbd5e1;   // Slate-300
+  font-size: 0.9375rem;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+
+  &:focus {
+    border-color: $info;
+    box-shadow: 0 0 0 3px rgba($info, 0.15) !important;
+    outline: none !important;
+  }
+
+  &::placeholder {
+    color: #94a3b8;  // Slate-400
+  }
+}
+
+.input-group {
+  .form-control:first-child {
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+  }
+  .btn:last-child {
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+  }
+}
+
+// ---- Search bar (general) ---------------------------------------------------
+
+ds-search-form,
+.search-form {
+  .form-control {
+    border-radius: 2rem;
+    padding-left: 1.25rem;
+  }
+
+  .btn {
+    border-radius: 2rem;
+  }
+}
+ds-base-home-page ds-themed-search-form,
+ds-base-home-page ds-search-form {
+  display: none !important;
+}
+
+// ---- Filters sidebar --------------------------------------------------------
+
+.facet-filter, .setting-option, .advanced-search {
+  background-color: #ffffff;
+  border-radius: 0.75rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+
+  &.p-3 {
+    // Needs !important because the original bootstrap class uses it
+    padding-top: 0.75rem !important;
+    padding-bottom: 0.75rem !important;
+  }
+
+  .bg-secondary {
+    background-color: var(--bs-primary);
+  }
+
+  h4, .h4 {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: #475569;  // Slate-600
+  }
+}
+
+// ---- Badges -----------------------------------------------------------------
+
+.badge {
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  border-radius: 0.375rem;
+  padding: 0.3em 0.55em;
+}
+
+// ---- Tables -----------------------------------------------------------------
+
+.table {
+  > :not(caption) > * > * {
+    padding: 0.75rem 1rem;
+  }
+
+  thead th {
+    font-weight: 600;
+    font-size: 0.8125rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #64748b;  // Slate-500
+    background-color: #f8fafc;
+    border-bottom-width: 1px;
+  }
+
+  tbody tr {
+    transition: background-color 0.12s ease;
+  }
+}
+
+// ---- Breadcrumb -------------------------------------------------------------
+
+.breadcrumb {
+  background-color: var(--ds-breadcrumb-bg, #eef2f7);
+  border-radius: 0.5rem;
+  padding: 0.625rem 1rem;
+  font-size: 0.875rem;
+
+  .breadcrumb-item {
+    font-weight: 400;
+
+    &.active {
+      font-weight: 500;
+    }
+  }
+}
+
+// ---- Pagination -------------------------------------------------------------
+
+.pagination {
+  gap: 0.25rem;
+
+  .page-link {
+    border-radius: 0.375rem !important;
+    border: 1px solid #e2e8f0;
+    // color: $primary;
+    font-weight: 500;
+    font-size: 0.875rem;
+    transition: var(--ds-transition-base);
+
+    &:hover {
+      background: $primary;
+      color: #fff;
+      border-color: $primary;
+    }
+    &:focus {
+      box-shadow: 0 0 0 3px rgba($primary, 0.25) !important;
+      outline: none !important;
+    }
+    // active
+    &.active {
+      background: $primary;
+      color: #fff;
+      border-color: $primary;
+    }
+  }
+
+  // .page-item.active .page-link {
+  //   background: $primary;
+  //   border-color: $primary;
+  // }
+}
+
+// ---- Alerts -----------------------------------------------------------------
+
+.alert {
+  border-radius: 0.625rem;
+  border-left-width: 4px;
+  font-size: 0.9375rem;
+}
+
+// ---- Modals -----------------------------------------------------------------
+
+.modal-content {
+  border: none;
+  border-radius: 1rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18), 0 8px 16px rgba(0, 0, 0, 0.08);
+}
+
+.modal-header {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  padding: 1.25rem 1.5rem;
+
+  .modal-title {
+    font-weight: 600;
+    font-size: 1.0625rem;
+  }
+}
+
+.modal-footer {
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  padding: 1rem 1.5rem;
+}
+
+// ---- Dropdowns --------------------------------------------------------------
+
+.dropdown-menu {
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 0.75rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.06);
+  padding: 0.375rem;
+  animation: dropdownFadeIn 0.15s ease;
+
+  .dropdown-item {
+    border-radius: 0.4rem;
+    font-size: 0.9rem;
+    font-weight: 400;
+    padding: 0.45rem 0.85rem;
+    transition: background 0.1s ease;
+
+    &:hover, &:focus {
+      background:$primary;
+      color: #f1f5f9 ;
+    }
+
+    // &.active {
+    //   background: $primary;
+    // }
+  }
+
+  .dropdown-divider {
+    margin: 0.375rem 0;
+    border-color: rgba(0, 0, 0, 0.06);
+  }
+}
+
+@keyframes dropdownFadeIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+// ---- Footer -----------------------------------------------------------------
+
+ds-footer,
+footer {
+  background: linear-gradient(180deg, var(--ds-top-footer-bg, #{lighten($primary, 5%)}) 0%, var(--ds-footer-bg, #{$primary}) 100%);
+  color: rgba(255, 255, 255, 0.88);
+
+  a {
+    color: rgba(255, 255, 255, 0.75);
+    text-decoration: none;
+    transition: color 0.15s ease;
+
+    &:hover {
+      color: #ffffff;
+    }
+  }
+}
+
+// ---- List groups ------------------------------------------------------------
+
+.list-group-item {
+  border-color: rgba(0, 0, 0, 0.06);
+  transition: background 0.12s ease;
+
+  &:hover {
+    background: #f8fafc;
+  }
+
+  &.active {
+    background: $primary;
+    border-color: $primary;
+  }
+}
+
+// ---- Home news section ------------------------------------------------------
+
+ds-home-news,
+.home-news {
+  background-color: var(--ds-home-news-background-color, #eef2f7);
+  border-radius: 1rem;
+}
+
+// ---- General links ----------------------------------------------------------
+
+a {
+  transition: color 0.15s ease;
+}
+
+// ---- Focus ring (accessibility) ---------------------------------------------
+
+*:focus-visible {
+  outline: 2px solid $info !important;
+  outline-offset: 3px !important;
+  box-shadow: none !important;
+}
+
+// ---- Scrollbar (WebKit) ─ subtle and modern --------------------------------
+
+::-webkit-scrollbar { width: 7px; height: 7px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+
+  &:hover { background: #94a3b8; }
+}
+
+// =============================================================================
+// Additional Elegance Layer
+// =============================================================================
+
+// ---- Section / page headings with accent rule --------------------------------
+
+ds-community-page,
+ds-collection-page,
+ds-item-page,
+ds-search-page,
+ds-my-dspace-page {
+  h2, h3 {
+    position: relative;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.25rem;
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset-inline-start: 0;
+      bottom: 0;
+      width: 36px;
+      height: 3px;
+      background: linear-gradient(90deg, $primary, $info);
+      border-radius: 2px;
+    }
+  }
+}
+
+// ---- Search result items — refined card look --------------------------------
+
+ds-listable-object-component-loader {
+  .card, ds-item-list-preview, ds-collection-list-preview, ds-community-list-preview {
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+
+    &:hover {
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.09) !important;
+      transform: translateY(-2px);
+    }
+  }
+}
+
+// ---- Metadata value chips / labels ------------------------------------------
+
+ds-metadata-field-wrapper {
+  .metadata-label {
+    font-weight: 600;
+    font-size: 0.8125rem;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: #64748b;
+  }
+
+  .metadata-value {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
+}
+
+// ---- Tag / chip elements (subjects, types, etc.) ----------------------------
+
+.badge,
+ds-typed-item-search-result-list-element .badge,
+.subject-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.3em 0.65em;
+  border-radius: 2rem;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  transition: filter 0.15s ease;
+
+  &:hover {
+    filter: brightness(0.92);
+  }
+}
+
+// ---- Stat / count badges (community browse page) ----------------------------
+
+.badge.bg-secondary,
+.badge.bg-info {
+  background: linear-gradient(135deg, $info, darken($info, 10%)) !important;
+  color: #fff;
+}
+
+// ---- Thumbnail placeholder --------------------------------------------------
+
+.thumbnail-placeholder {
+  background: linear-gradient(135deg, #e2e8f0, #f1f5f9);
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// ---- Page entrance animation ------------------------------------------------
+
+@keyframes pageFadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+ds-root > * {
+  animation: pageFadeIn 0.35s ease both;
+}
+
+// ---- Notification toasts -- elegant positioning -----------------------------
+
+simple-notifications {
+  .simple-notification {
+    border-radius: 0.75rem !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14) !important;
+    border-left: 4px solid currentColor;
+    font-family: inherit;
+  }
+}
+
+// ---- Skip-to-content link (accessibility) -----------------------------------
+
+.skip-to-content-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  background: $primary;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 0 0 0.5rem 0.5rem;
+  font-weight: 600;
+  z-index: 9999;
+  transition: top 0.15s ease;
+
+  &:focus {
+    top: 0;
+  }
+}
+
+// ---- Community list section --------------------------------------------------
+
+ds-top-level-community-list,
+ds-themed-top-level-community-list {
+  display: block;
+  margin-top: 2rem;
+
+  h2 {
+    font-size: 1.375rem;
+    font-weight: 700;
+    color: #1e293b;
+    position: relative;
+    padding-bottom: 0.75rem;
+    margin-bottom: 0.5rem;
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset-inline-start: 0;
+      bottom: 0;
+      width: 40px;
+      height: 3px;
+      background: linear-gradient(90deg, $primary, $info);
+      border-radius: 2px;
+    }
+  }
+
+  .lead {
+    color: #64748b;
+    font-size: 0.9375rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+// ---- Search form prominence on home ------------------------------------------
+
+ds-search-form {
+  .form-control {
+    height: 3rem;
+    font-size: 1rem;
+  }
+
+  .btn {
+    height: 3rem;
+    padding: 0 1.5rem;
+    font-size: 0.9375rem;
+    font-weight: 600;
+  }
+}
+
+// ---- Recent submissions section ----------------------------------------------
+
+ds-recent-item-list {
+  display: block;
+  margin-top: 2.5rem;
+
+  h2 {
+    font-size: 1.375rem;
+    font-weight: 700;
+    color: #1e293b;
+    position: relative;
+    padding-bottom: 0.75rem;
+    margin-bottom: 1.25rem;
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset-inline-start: 0;
+      bottom: 0;
+      width: 40px;
+      height: 3px;
+      background: linear-gradient(90deg, $primary, $info);
+      border-radius: 2px;
+    }
+  }
+}
+
+// =============================================================================
+// Community & Collection Search Page
+// =============================================================================
+
+// ── Community page container ──────────────────────────────────────────────────
+
+ds-community-page,
+ds-themed-community-page {
+  display: block;
+
+  .community-page {
+    padding-top: 0.5rem;
+  }
+
+  // ── Header row: name + logo + handle ────────────────────────────────────
+  .d-flex.flex-row.border-bottom {
+    border-bottom: none !important;
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
+    background: var(--ds-navbar-bg) !important;
+    border-radius: 1rem;
+    padding: 2rem 2.5rem !important;
+    margin-bottom: 1.5rem !important;
+    position: relative;
+    overflow: hidden;
+
+    // Subtle pattern overlay
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 80% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+  }
+
+  .comcol-header {
+    position: relative;
+    z-index: 1;
+
+    ds-comcol-page-header h1,
+    h1 {
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      color: #ffffff;
+      margin-bottom: 0.5rem;
+    }
+
+    // Handle / persistent URL
+    ds-comcol-page-handle {
+      display: block;
+      margin-top: 0.25rem;
+
+      a, span, p {
+        font-size: 0.8125rem;
+        color: rgba(255, 255, 255, 0.55);
+      }
+    }
+
+    // Intro / news text
+    ds-comcol-page-content {
+      display: block;
+      margin-top: 0.75rem;
+      font-size: 0.9375rem;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, 0.78);
+      max-width: 700px;
+    }
+  }
+
+  // Edit menu button — uses same color variables as navbar icons
+  ds-dso-edit-menu {
+    position: relative;
+    z-index: 1;
+
+    .btn {
+      color: var(--ds-header-icon-color) !important;
+      border-color: var(--ds-header-icon-color);
+      opacity: 0.75;
+      background: rgba(255, 255, 255, 0.08);
+
+      &:hover {
+        color: var(--ds-header-icon-color-hover) !important;
+        border-color: var(--ds-header-icon-color-hover);
+        opacity: 1;
+        background: rgba(255, 255, 255, 0.16);
+      }
+    }
+  }
+
+  // ── Browse-by tabs ───────────────────────────────────────────────────────
+  .comcol-page-browse-section {
+    margin-top: 1.5rem;
+  }
+}
+
+// ── Browse-by tab navigation ──────────────────────────────────────────────────
+
+ds-comcol-page-browse-by {
+  display: block;
+  margin-bottom: 1.5rem;
+
+  // The browse nav uses .list-group.list-group-horizontal with .list-group-item[role="tab"]
+  .list-group-horizontal {
+    gap: 0; // keep Bootstrap's connected look
+  }
+
+  .list-group-item {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: $primary;
+    background: #f8fafc;
+    border-color: #e2e8f0;
+    text-decoration: none;
+    transition: background 0.15s ease, color 0.15s ease;
+    cursor: pointer;
+
+    // hover: only change bg+color, do NOT turn text white globally
+    &:hover:not(.active) {
+      background: #eef2f7;
+      color: darken($primary, 8%);
+    }
+
+    // active tab
+    &.active {
+      background: $primary !important;
+      color: #ffffff !important;
+      border-color: $primary !important;
+    }
+  }
+}
+
+// ── Search sidebar ────────────────────────────────────────────────────────────
+
+ds-search-sidebar,
+ds-themed-search-sidebar {
+  #search-sidebar-content {
+    .sidebar-content {
+      background: #ffffff;
+      border-radius: 0.875rem;
+      border: 1px solid #e2e8f0;
+      padding: 1.25rem;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+  }
+
+  .search-controls {
+    background: #f8fafc;
+    border-radius: 0.625rem;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #e2e8f0;
+  }
+}
+
+// ── Search filter groups ──────────────────────────────────────────────────────
+
+ds-search-filters,
+ds-themed-search-filters {
+  .facet-filter {
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    padding: 0 !important;
+    margin-bottom: 0.75rem;
+
+    &:last-child { margin-bottom: 0; }
+
+    // Filter group heading
+    h4, .h4, .filter-section-head {
+      font-size: 0.75rem !important;
+      font-weight: 700 !important;
+      text-transform: uppercase !important;
+      letter-spacing: 0.08em !important;
+      color: #64748b !important;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid #f1f5f9;
+      margin-bottom: 0.5rem;
+    }
+
+    // Filter option links
+    a.filter-option,
+    .search-filter-option {
+      font-size: 0.875rem;
+      color: #374151;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.3rem 0;
+      border-radius: 0.375rem;
+      text-decoration: none;
+      transition: color 0.12s ease;
+
+      &:hover { color: $primary; }
+
+      .filter-value { flex: 1; }
+
+      // Count badge
+      .badge,
+      .filter-count {
+        background: #e2e8f0 !important;
+        color: #475569 !important;
+        font-size: 0.7rem;
+        font-weight: 600;
+        padding: 0.15em 0.5em;
+        border-radius: 2rem;
+      }
+    }
+
+    // Selected/active filter
+    a.active-filter,
+    .filter-option.active {
+      color: $primary;
+      font-weight: 600;
+
+      .badge, .filter-count {
+        background: rgba($primary, 0.12) !important;
+        color: $primary !important;
+      }
+    }
+  }
+}
+
+// ── Search results area ───────────────────────────────────────────────────────
+
+ds-search-results,
+ds-themed-search-results {
+
+  h1 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 1rem;
+    position: relative;
+    padding-bottom: 0.6rem;
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset-inline-start: 0;
+      bottom: 0;
+      width: 36px;
+      height: 3px;
+      background: linear-gradient(90deg, $primary, $info);
+      border-radius: 2px;
+    }
+  }
+
+  // No results text
+  > div > p,
+  .no-results-message {
+    color: #64748b;
+    font-size: 0.9375rem;
+  }
+}
+
+// ── Search settings bar (sort + view mode) ────────────────────────────────────
+
+ds-search-settings {
+  display: block;
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #f1f5f9;
+
+  label {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .form-select {
+    font-size: 0.875rem;
+  }
+}
+
+// ── Active filter labels ──────────────────────────────────────────────────────
+
+ds-search-labels {
+  .filter-tag,
+  .badge {
+    background: rgba($primary, 0.1) !important;
+    color: $primary !important;
+    border: 1px solid rgba($primary, 0.2) !important;
+    border-radius: 2rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    padding: 0.3em 0.75em;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin: 0.2rem;
+
+    .remove-filter,
+    button { color: $primary; }
+  }
+}
+
+// ── Search result item cards ──────────────────────────────────────────────────
+
+ds-listable-object-component-loader {
+  > * {
+    display: block;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 0.75rem;
+    transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+
+    &:hover {
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08) !important;
+      transform: translateY(-2px);
+      border-color: #cbd5e1;
+    }
+  }
+
+  // Item title link
+  h4 a, h3 a, .item-title a {
+    color: $primary;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: color 0.15s ease;
+
+    &:hover { color: darken($primary, 10%); text-decoration: underline; }
+  }
+
+  // Metadata labels
+  .metadata-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #94a3b8;
+  }
+
+  // Author, date chips
+  .badge.bg-info,
+  .author-link {
+    font-size: 0.8125rem;
+  }
+}
+
+// ── View-mode switch ──────────────────────────────────────────────────────────
+
+ds-view-mode-switch {
+  .btn-group {
+    .btn {
+      font-size: 0.8125rem;
+      padding: 0.35rem 0.75rem;
+      border-radius: 0.375rem !important;
+    }
+  }
+}
+
+// ---- "No results" empty state -----------------------------------------------
+
+.ds-no-results,
+.alert-info.no-results {
+  text-align: center;
+  padding: 3rem 2rem;
+  border-radius: 1rem;
+  background: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  color: #64748b;
+
+  i, .fas {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+    opacity: 0.5;
+  }
+}
+// Section headings with blue accent underline
+ds-top-level-community-list,
+ds-themed-top-level-community-list {
+  display: block;
+  margin-top: 2rem;
+
+  h2 {
+    font-size: 1.375rem;
+    font-weight: 700;
+    color: #1e293b;
+    position: relative;
+    padding-bottom: 0.75rem;
+    margin-bottom: 0.5rem;
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset-inline-start: 0; bottom: 0;
+      width: 40px; height: 3px;
+      background: linear-gradient(90deg, $primary, $info);
+      border-radius: 2px;
+    }
+  }
+
+  .lead { color: #64748b; font-size: 0.9375rem; margin-bottom: 1.5rem; }
+}
+
+ds-recent-item-list {
+  display: block;
+  margin-top: 2.5rem;
+
+  h2 {
+    font-size: 1.375rem;
+    font-weight: 700;
+    color: #1e293b;
+    position: relative;
+    padding-bottom: 0.75rem;
+    margin-bottom: 1.25rem;
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset-inline-start: 0; bottom: 0;
+      width: 40px; height: 3px;
+      background: linear-gradient(90deg, $primary, $info);
+      border-radius: 2px;
+    }
+  }
+}
+
+// =============================================================================
+// Browse / Search — enhanced result items
+// =============================================================================
+
+// ── Result item list element ──────────────────────────────────────────────────
+
+ds-item-search-result-list-element,
+ds-item-list-preview,
+ds-publication-search-result-list-element {
+  display: block;
+
+  .item-info {
+    h4, h3 {
+      a {
+        color: $primary;
+        font-weight: 600;
+        font-size: 1rem;
+        text-decoration: none;
+        transition: color 0.15s ease;
+
+        &:hover { color: darken($primary, 10%); text-decoration: underline; }
+      }
+    }
+  }
+
+  // Author / contributor chips
+  .badge.bg-info,
+  .author-link,
+  a[routerLink*="browse/author"] {
+    font-size: 0.8125rem;
+    color: #0284c7;
+  }
+
+  // Date badge
+  .badge.bg-secondary {
+    background: #e2e8f0 !important;
+    color: #475569 !important;
+    font-size: 0.75rem;
+  }
+}
+
+// ── Back-to-results button ────────────────────────────────────────────────────
+
+ds-results-back-button,
+ds-themed-results-back-button {
+  .btn {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: $primary;
+    background: transparent;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+    padding: 0.375rem 0.875rem;
+    transition: background 0.15s ease, border-color 0.15s ease;
+
+    i { margin-inline-end: 0.4rem; }
+
+    &:hover {
+      background: #f8fafc;
+      border-color: #cbd5e1;
+    }
+  }
+}
+
+// ── Item page — general title ─────────────────────────────────────────────────
+
+ds-item-page-title-field {
+  h2, h3 {
+    font-size: clamp(1.25rem, 2.5vw, 1.875rem);
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    line-height: 1.3;
+    color: #0f172a;
+    margin-bottom: 0;
+
+    // No accent-underline on item title (different from section headings)
+    &::after { display: none !important; }
+  }
+}
+
+// ── Browse page tabs ──────────────────────────────────────────────────────────
+
+ds-browse-by,
+ds-themed-browse-by {
+  .nav-tabs {
+    border-bottom: 2px solid #e2e8f0;
+    gap: 0.25rem;
+    margin-bottom: 1.5rem;
+
+    .nav-link {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: #64748b;
+      border: none;
+      border-bottom: 2px solid transparent;
+      border-radius: 0;
+      padding: 0.5rem 0.875rem;
+      margin-bottom: -2px;
+      transition: color 0.15s ease, border-color 0.15s ease;
+
+      &:hover { color: $primary; }
+
+      &.active {
+        color: $primary;
+        border-bottom-color: $primary;
+        background: transparent;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+// ── Browse alphabetical letter index ─────────────────────────────────────────
+
+ds-browse-by-metadata-page,
+ds-browse-by-title-page {
+  .browse-by-starts-with {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    margin-bottom: 1.25rem;
+
+    a, button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 0.375rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: $primary;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      text-decoration: none;
+      transition: background 0.12s ease, color 0.12s ease;
+
+      &:hover, &.active {
+        background: $primary;
+        color: #ffffff;
+        border-color: $primary;
+      }
+    }
+  }
+}
+
+// ── My DSpace / submission page ───────────────────────────────────────────────
+
+ds-my-dspace-page {
+  .my-dspace-sidebar {
+    background: #ffffff;
+    border-radius: 0.875rem;
+    border: 1px solid #e2e8f0;
+    padding: 1.25rem;
+  }
+}
+
+// ── Community / Collection list cards ────────────────────────────────────────
+
+ds-community-list-element,
+ds-collection-list-element {
+  .card {
+    border-radius: 0.875rem;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+
+    .card-body {
+      h4, h5 {
+        font-weight: 700;
+        color: $primary;
+        font-size: 1rem;
+      }
+
+      p {
+        font-size: 0.875rem;
+        color: #64748b;
+        line-height: 1.6;
+      }
+    }
+
+    &:hover {
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.09);
+      transform: translateY(-2px);
+    }
+  }
+}

@@ -1,0 +1,171 @@
+@if (showBackButton$ | async) {
+  <ds-results-back-button [back]="back" class="d-block mb-4"></ds-results-back-button>
+}
+
+@if (iiifEnabled) {
+  <div class="row mb-4">
+    <div class="col-12">
+      <ds-mirador-viewer id="iiif-viewer"
+        [object]="object"
+        [searchable]="iiifSearchEnabled"
+        [query]="iiifQuery$ | async">
+      </ds-mirador-viewer>
+    </div>
+  </div>
+}
+
+<!-- Title + edit menu -->
+<div class="item-title-row d-flex align-items-start justify-content-between gap-2 mb-4">
+  <ds-item-page-title-field [item]="object" class="flex-grow-1"></ds-item-page-title-field>
+  <ds-dso-edit-menu class="flex-shrink-0 ms-2"></ds-dso-edit-menu>
+</div>
+
+<!-- Two-column layout -->
+<div class="row g-4">
+
+  <!-- ── Sidebar ──────────────────────────────────────────────────────── -->
+  <div class="col-12 col-md-4 col-lg-3">
+    <div class="item-sidebar">
+
+      <!-- Thumbnail -->
+      @if (!(mediaViewer.image || mediaViewer.video)) {
+        <ds-metadata-field-wrapper [hideIfNoTextContent]="false" class="d-block mb-3">
+          <ds-thumbnail [thumbnail]="object?.thumbnail | async"></ds-thumbnail>
+        </ds-metadata-field-wrapper>
+      }
+      @if (mediaViewer.image || mediaViewer.video) {
+        <div class="mb-3">
+          <ds-media-viewer [item]="object"></ds-media-viewer>
+        </div>
+      }
+
+      <!-- Download / Files -->
+      <div class="item-download-section mb-3">
+        <ds-item-page-file-section [item]="object"></ds-item-page-file-section>
+      </div>
+
+      <!-- Key metadata -->
+      <div class="item-meta-sidebar">
+        <ds-item-page-date-field [item]="object"></ds-item-page-date-field>
+        <ds-metadata-representation-list
+          class="ds-item-page-mixed-author-field"
+          [parentItem]="object"
+          [itemType]="'Person'"
+          [metadataFields]="['dc.contributor.author', 'dc.creator']"
+          [label]="'item.page.authors' | translate">
+        </ds-metadata-representation-list>
+        <ds-generic-item-page-field [item]="object"
+          [fields]="['dc.publisher']"
+          [label]="'publication.page.publisher'">
+        </ds-generic-item-page-field>
+        <ds-generic-item-page-field [item]="object"
+          [fields]="['dc.identifier.doi', 'dc.relation.hasversion']"
+          [label]="'publication.page.doi'"
+          urlRegex="^https?://">
+        </ds-generic-item-page-field>
+        <ds-item-page-collections [item]="object"></ds-item-page-collections>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── Main content ─────────────────────────────────────────────────── -->
+  <div class="col-12 col-md-8 col-lg-9">
+    <div class="item-main-content">
+
+      <!-- Related items -->
+      <ds-related-items [parentItem]="object"
+        [relationType]="'isProjectOfPublication'"
+        [label]="'item.page.projects' | translate">
+      </ds-related-items>
+      <ds-related-items [parentItem]="object"
+        [relationType]="'isOrgUnitOfPublication'"
+        [label]="'item.page.org-units' | translate">
+      </ds-related-items>
+      <ds-related-items [parentItem]="object"
+        [relationType]="'isJournalIssueOfPublication'"
+        [label]="'item.page.journal-issue' | translate">
+      </ds-related-items>
+
+      <!-- Abstract — most prominent -->
+      <div class="item-abstract-section mb-4">
+        <ds-item-page-abstract-field [item]="object"></ds-item-page-abstract-field>
+      </div>
+
+      <!-- Description -->
+      <ds-generic-item-page-field [item]="object"
+        [fields]="['dc.description']"
+        [label]="'publication.page.description'">
+      </ds-generic-item-page-field>
+
+      <!-- Subjects -->
+      <ds-generic-item-page-field [item]="object"
+        [fields]="['dc.subject']"
+        [separator]="', '"
+        [label]="'item.page.subject'">
+      </ds-generic-item-page-field>
+
+      <!-- Citation -->
+      <ds-generic-item-page-field [item]="object"
+        [fields]="['dc.identifier.citation']"
+        [label]="'item.page.citation'">
+      </ds-generic-item-page-field>
+
+      <!-- Handle URI -->
+      <ds-item-page-uri-field [item]="object"
+        [fields]="['dc.identifier.uri']"
+        [label]="'item.page.uri'">
+      </ds-item-page-uri-field>
+
+      <!-- Journal metadata -->
+      <ds-generic-item-page-field [item]="object"
+        [fields]="['journal.title']"
+        [label]="'publication.page.journal-title'">
+      </ds-generic-item-page-field>
+      <ds-generic-item-page-field [item]="object"
+        [fields]="['journal.identifier.issn']"
+        [label]="'publication.page.journal-issn'">
+      </ds-generic-item-page-field>
+      <ds-generic-item-page-field [item]="object"
+        [fields]="['journalvolume.identifier.name']"
+        [label]="'publication.page.volume-title'">
+      </ds-generic-item-page-field>
+
+      <!-- COAR / linked-data URIs -->
+      <ds-item-page-uri-field [item]="object"
+        [fields]="['coar.notify.endorsedBy']"
+        [label]="'item.page.endorsement'">
+      </ds-item-page-uri-field>
+      <ds-item-page-uri-field [item]="object"
+        [fields]="['datacite.relation.isReviewedBy']"
+        [label]="'item.page.review'">
+      </ds-item-page-uri-field>
+      <ds-item-page-uri-field [item]="object"
+        [fields]="['datacite.relation.isSupplementedBy']"
+        [label]="'item.page.supplemented'">
+      </ds-item-page-uri-field>
+      <ds-item-page-uri-field [item]="object"
+        [fields]="['datacite.relation.isReferencedBy']"
+        [label]="'item.page.referenced'">
+      </ds-item-page-uri-field>
+
+      @if (geospatialItemPageFieldsEnabled) {
+        <ds-geospatial-item-page-field [item]="object"
+          [label]="'item.page.places'"
+          [pointFields]="['dcterms.spatial']"
+          [bboxFields]="['dcterms.spatial']"
+          [cluster]="true">
+        </ds-geospatial-item-page-field>
+      }
+
+      <!-- Full record link -->
+      <div class="mt-4">
+        <a class="btn btn-outline-primary" role="button" [routerLink]="[itemPageRoute + '/full']">
+          <i class="fas fa-info-circle me-2"></i>{{ 'item.page.link.full' | translate }}
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+</div>

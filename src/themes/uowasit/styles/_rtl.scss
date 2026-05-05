@@ -1,0 +1,395 @@
+// =============================================================================
+// RTL & Arabic Language Support
+// Applied whenever <html dir="rtl"> is set by the locale service.
+// Covers: Arabic (ar), Persian/Farsi (fa), Hebrew (he), Urdu (ur), and others.
+// =============================================================================
+
+// ----------------------------------------------------------------------------
+// Arabic / RTL Fonts — loaded via <link> in index.html (Cairo + Noto Sans Arabic)
+// ----------------------------------------------------------------------------
+
+$rtl-font-stack: 'Cairo', 'Noto Sans Arabic', 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+// body.rtl is added by locale.service.ts applyDirectionality()
+// Target it directly for highest specificity — overrides Bootstrap's compiled body rules
+body.rtl {
+  font-family: $rtl-font-stack !important;
+  --bs-font-sans-serif: #{$rtl-font-stack};
+  --bs-body-font-family: #{$rtl-font-stack};
+
+  // Step 1: apply Arabic font to every element
+  * {
+    font-family: $rtl-font-stack !important;
+  }
+
+  // Step 2: restore Font Awesome fonts — class selectors beat * in specificity
+  // Covers FA6 Free (solid/regular/light/thin/duotone) and FA6 Brands
+  .fas, .fa-classic, .fa-solid,
+  .far, .fa-regular,
+  .fal, .fa-light,
+  .fat, .fa-thin,
+  .fad, .fa-duotone,
+  .fa {
+    font-family: "Font Awesome 6 Free" !important;
+  }
+
+  .fab,
+  .fa-brands {
+    font-family: "Font Awesome 6 Brands" !important;
+  }
+}
+
+// Root RTL scope — all overrides are scoped to [dir="rtl"]
+// ----------------------------------------------------------------------------
+[dir="rtl"] {
+  // Override Bootstrap CSS font variables so they cascade into body + all components
+  --bs-font-sans-serif: #{$rtl-font-stack};
+  --bs-body-font-family: #{$rtl-font-stack};
+
+  // Direct property — covers components that bypass CSS variables
+  font-family: $rtl-font-stack;
+  text-align: right;
+
+  // Force body to use the Arabic font stack
+  body {
+    font-family: $rtl-font-stack !important;
+  }
+
+  // ---- Bootstrap utility class mirrors (physical → logical) ----------------
+
+  // Margin start/end utilities
+  .ms-auto { margin-left: unset !important; margin-right: auto !important; }
+  .me-auto { margin-right: unset !important; margin-left: auto !important; }
+
+  .ms-1 { margin-left: unset !important; margin-right: 0.25rem !important; }
+  .ms-2 { margin-left: unset !important; margin-right: 0.5rem !important; }
+  .ms-3 { margin-left: unset !important; margin-right: 1rem !important; }
+  .ms-4 { margin-left: unset !important; margin-right: 1.5rem !important; }
+  .ms-5 { margin-left: unset !important; margin-right: 3rem !important; }
+
+  .me-1 { margin-right: unset !important; margin-left: 0.25rem !important; }
+  .me-2 { margin-right: unset !important; margin-left: 0.5rem !important; }
+  .me-3 { margin-right: unset !important; margin-left: 1rem !important; }
+  .me-4 { margin-right: unset !important; margin-left: 1.5rem !important; }
+  .me-5 { margin-right: unset !important; margin-left: 3rem !important; }
+
+  // Padding start/end utilities
+  .ps-1 { padding-left: unset !important; padding-right: 0.25rem !important; }
+  .ps-2 { padding-left: unset !important; padding-right: 0.5rem !important; }
+  .ps-3 { padding-left: unset !important; padding-right: 1rem !important; }
+  .ps-4 { padding-left: unset !important; padding-right: 1.5rem !important; }
+  .ps-5 { padding-left: unset !important; padding-right: 3rem !important; }
+
+  .pe-1 { padding-right: unset !important; padding-left: 0.25rem !important; }
+  .pe-2 { padding-right: unset !important; padding-left: 0.5rem !important; }
+  .pe-3 { padding-right: unset !important; padding-left: 1rem !important; }
+  .pe-4 { padding-right: unset !important; padding-left: 1.5rem !important; }
+  .pe-5 { padding-right: unset !important; padding-left: 3rem !important; }
+
+  // Text alignment
+  .text-start { text-align: right !important; }
+  .text-end   { text-align: left  !important; }
+
+  // Float utilities
+  .float-start { float: right !important; }
+  .float-end   { float: left  !important; }
+
+  // ---- Navbar & header -----------------------------------------------------
+  .navbar {
+    // flex-direction: row-reverse;
+
+    .navbar-brand {
+      margin-right: 0;
+      margin-left: 1rem;
+    }
+
+    .navbar-nav {
+      flex-direction: row-reverse;
+    }
+
+    .navbar-toggler {
+      margin-right: 0;
+      margin-left: 0.5rem;
+    }
+  }
+
+  // ---- Dropdown menus ------------------------------------------------------
+  .dropdown-menu {
+    text-align: right;
+
+    &.dropdown-menu-end {
+      right: auto;
+      left: 0;
+    }
+  }
+
+  // ---- Breadcrumb ----------------------------------------------------------
+  .breadcrumb-item + .breadcrumb-item::before {
+    content: '/';
+    float: right;
+    padding-right: 0;
+    padding-left: 0.5rem;
+  }
+
+  // .breadcrumb {
+  //   flex-direction: row-reverse;
+  // }
+
+  // ---- Forms ---------------------------------------------------------------
+  .form-check {
+    padding-left: 0;
+    padding-right: 1.5em;
+
+    .form-check-input {
+      float: right;
+      margin-left: 0;
+      margin-right: -1.5em;
+    }
+  }
+
+  .input-group {
+    flex-direction: row-reverse;
+
+    > :not(:last-child):not(.dropdown-toggle):not(.dropdown-menu) {
+      border-radius: 0 0.375rem 0.375rem 0;
+    }
+    > :not(:first-child):not(.dropdown-menu) {
+      border-radius: 0.375rem 0 0 0.375rem;
+    }
+  }
+
+  // ---- List groups & navigation items--------------------------------------
+  .list-group {
+    padding-right: 0;
+  }
+
+  // ---- Horizontal list-group border-radius fix (RTL mirror of Bootstrap) ---
+  // Bootstrap LTR rounds the left side of the first item and the right side
+  // of the last item. In RTL these are flipped.
+  .list-group-horizontal {
+    > .list-group-item:first-child:not(:last-child) {
+      border-top-left-radius: 0 !important;
+      border-bottom-left-radius: 0 !important;
+      border-top-right-radius: var(--bs-list-group-border-radius) !important;
+      border-bottom-right-radius: var(--bs-list-group-border-radius) !important;
+    }
+
+    > .list-group-item:last-child:not(:first-child) {
+      border-top-right-radius: 0 !important;
+      border-bottom-right-radius: 0 !important;
+      border-top-left-radius: var(--bs-list-group-border-radius) !important;
+      border-bottom-left-radius: var(--bs-list-group-border-radius) !important;
+    }
+  }
+
+  // Responsive variants (.list-group-horizontal-{sm|md|lg|xl|xxl})
+  @each $bp in (sm, md, lg, xl, xxl) {
+    .list-group-horizontal-#{$bp} {
+      > .list-group-item:first-child:not(:last-child) {
+        border-top-left-radius: 0 !important;
+        border-bottom-left-radius: 0 !important;
+        border-top-right-radius: var(--bs-list-group-border-radius) !important;
+        border-bottom-right-radius: var(--bs-list-group-border-radius) !important;
+      }
+
+      > .list-group-item:last-child:not(:first-child) {
+        border-top-right-radius: 0 !important;
+        border-bottom-right-radius: 0 !important;
+        border-top-left-radius: var(--bs-list-group-border-radius) !important;
+        border-bottom-left-radius: var(--bs-list-group-border-radius) !important;
+      }
+    }
+  }
+
+  // ---- Cards ---------------------------------------------------------------
+  .card-header,
+  .card-body,
+  .card-footer {
+    text-align: right;
+  }
+
+  // ---- Alerts & badges -----------------------------------------------------
+  .alert {
+    text-align: right;
+  }
+
+  // ---- Tables --------------------------------------------------------------
+  .table {
+    text-align: right;
+
+    th, td {
+      text-align: right;
+    }
+  }
+
+  // ---- Pagination ----------------------------------------------------------
+  // .pagination {
+  //   flex-direction: row-reverse;
+  // }
+
+  // ---- Modal ---------------------------------------------------------------
+  .modal-header .btn-close {
+    margin: -0.5rem auto -0.5rem -0.5rem;
+  }
+
+  // ---- Icons adjacent to text (Font Awesome) --------------------------------
+  // Flip margins for icons placed before text in LTR
+  .fas, .far, .fab, .fal {
+    &.me-1, &.me-2, &.me-3 {
+      margin-right: unset;
+    }
+  }
+
+  // ---- Form addon / input-with-icon (form.component.scss) ------------------
+  // LTR: .left-addon puts icon on left  → RTL: icon goes on right
+  // LTR: .right-addon puts icon on right → RTL: icon goes on left
+
+  .left-addon {
+    .far, .fas, i { left: auto !important; right: 0 !important; }
+
+    input[type="text"],
+    input[type="search"],
+    input[type="email"],
+    input[type="password"],
+    input {
+      padding-left: var(--bs-spacer) !important;
+      padding-right: calc(var(--bs-spacer) * 2.25) !important;
+    }
+  }
+
+  .right-addon {
+    .far, .fas, i { right: auto !important; left: 0 !important; }
+
+    input[type="text"],
+    input[type="search"],
+    input[type="email"],
+    input[type="password"],
+    input {
+      padding-right: var(--bs-spacer) !important;
+      padding-left: calc(var(--bs-spacer) * 2.25) !important;
+    }
+  }
+
+  // ---- Form input group addon border-radius (form.component.scss) ----------
+  .ds-form-input-addon {
+    border-top-right-radius: unset !important;
+    border-bottom-right-radius: unset !important;
+    border-right: unset !important;
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+    border-left: 0 !important;
+  }
+
+  .ds-form-input-btn {
+    border-top-left-radius: unset !important;
+    border-bottom-left-radius: unset !important;
+    border-left: unset !important;
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    border-right: 0 !important;
+  }
+
+  .ds-form-input-value {
+    border-top-left-radius: unset !important;
+    border-bottom-left-radius: unset !important;
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+  }
+
+  // DSpace-specific component overrides
+  // ---- Sidebar & admin nav --------------------------------------------------
+  ds-admin-sidebar,
+  .sidebar-menu {
+    right: 0;
+    left: auto;
+  }
+
+  // ---- Search bar ----------------------------------------------------------
+  ds-search-form,
+  .search-form {
+    .input-group {
+      flex-direction: row-reverse;
+    }
+  }
+
+  // ---- Header search navbar (search-navbar.component.scss) -----------------
+  // LTR positions the expanding input with right:0 (anchored to the right edge).
+  // In RTL the navbar is mirrored so the input must anchor to the left edge.
+  ds-search-navbar,
+  ds-themed-search-navbar {
+    input[type="text"] {
+      right: auto !important;
+      left: 0 !important;
+    }
+  }
+
+  // ---- Filter sidebar chips / active filters --------------------------------
+  .filter-section,
+  .applied-filter {
+    text-align: right;
+  }
+
+  // ---- Metadata table labels -----------------------------------------------
+  ds-metadata-field-wrapper {
+    text-align: right;
+  }
+
+  // ---- Community / Collection page -----------------------------------------
+  .ds-community-header,
+  .ds-collection-header {
+    text-align: right;
+  }
+
+  // ---- Item detail page ----------------------------------------------------
+  .item-metadata,
+  .item-page-field {
+    text-align: right;
+  }
+
+  // ---- Notification toast (simple-notifications) ---------------------------
+  simple-notification {
+    direction: rtl;
+    text-align: right;
+  }
+
+  // ---- Footer link hover — swap padding direction ---------------------------
+  .footer-links a:hover {
+    padding-left: 0 !important;
+    padding-right: 4px !important;
+  }
+
+  // ---- Language switch indicator -------------------------------------------
+  ds-lang-switch {
+    .lang-switch-button,
+    .dropdown-toggle {
+      direction: rtl;
+    }
+  }
+}
+
+// ----------------------------------------------------------------------------
+// Arabic-specific font rendering — applied on top of RTL when lang is Arabic
+// ----------------------------------------------------------------------------
+:lang(ar),
+:lang(fa) {
+  font-family: $rtl-font-stack;
+  line-height: 1.8;
+  letter-spacing: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+:lang(ar) h1,
+:lang(ar) h2,
+:lang(ar) h3,
+:lang(ar) h4,
+:lang(ar) h5,
+:lang(ar) h6,
+:lang(fa) h1,
+:lang(fa) h2,
+:lang(fa) h3,
+:lang(fa) h4,
+:lang(fa) h5,
+:lang(fa) h6 {
+  font-family: 'Cairo', 'Noto Sans Arabic', sans-serif;
+  font-weight: 700;
+}

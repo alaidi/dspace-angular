@@ -1,0 +1,58 @@
+{
+  // ---- Navigation -----------------------------------------------------------
+  "menu.section.browse_global": "تصفح المستودع",
+  "repository.title.prefix": "جامعة واسط :: ",
+
+  // ---- Home hero ------------------------------------------------------------
+  "home.hero.title": "مستودع رسائل جامعة واسط",
+  "home.hero.subtitle": "مستودع رقمي مفتوح الوصول يحفظ ويتيح للعالم الاطلاع على الرسائل الجامعية والأطاريح العلمية لجامعة واسط، العراق.",
+  "home.hero.btn.browse": "تصفح المستودع",
+  "home.hero.btn.submit": "إيداع رسالة",
+  "home.hero.search.btn": "بحث",
+  "home.hero.browse.label": "تصفح حسب",
+
+  // ---- Home stats strip -----------------------------------------------------
+  "home.stats.theses.count": "+5,000",
+  "home.stats.theses.label": "رسالة وأطروحة",
+  "home.stats.colleges.count": "14",
+  "home.stats.colleges.label": "كلية",
+  "home.stats.downloads.count": "+120K",
+  "home.stats.downloads.label": "تحميل",
+  "home.stats.openaccess.count": "100%",
+  "home.stats.openaccess.label": "وصول مفتوح",
+
+  // ---- Home page ------------------------------------------------------------
+  "home.search-form.placeholder": "ابحث في المستودع ...",
+  "home.breadcrumbs": "الرئيسية",
+  "home.top-level-communities.head": "المجتمعات في المستودع",
+  "home.top-level-communities.help": "اختر مجتمعاً لتصفح مجموعاته.",
+  "home.recent-submissions.head": "أحدث الإضافات",
+
+  // ---- Footer headings ------------------------------------------------------
+  "footer.heading.browse": "تصفح",
+  "footer.heading.info":   "معلومات",
+  "footer.heading.about":  "تواصل معنا",
+
+  // ---- Footer brand / contact (custom keys) ---------------------------------
+  "footer.brand.title":      "مستودع رسائل جامعة واسط",
+  "footer.brand.desc":       "مستودع رقمي مفتوح الوصول يحفظ ويتيح للعالم الاطلاع على الرسائل الجامعية والأطاريح العلمية لجامعة واسط، العراق.",
+  "footer.brand.org":        "جامعة واسط",
+  "footer.powered-by":       "مدعوم من",
+  "footer.contact.address1": "الكوت، واسط، العراق",
+  "footer.contact.website":  "www.uowasit.edu.iq",
+
+  // ---- Footer links (overrides base) ----------------------------------------
+  "footer.link.communities":       "المجتمعات والمجموعات",
+  "footer.link.accessibility":     "إعدادات إمكانية الوصول",
+  "footer.link.privacy-policy":    "سياسة الخصوصية",
+  "footer.link.end-user-agreement":"اتفاقية المستخدم النهائي",
+  "footer.link.feedback":          "إرسال ملاحظة",
+  "footer.link.cookies":           "إعدادات ملفات تعريف الارتباط",
+  "footer.link.coar-notify-support": "دعم COAR Notify",
+
+  // ---- Browse ---------------------------------------------------------------
+  "browse.comcol.by.title":     "بالعنوان",
+  "browse.comcol.by.author":    "بالمؤلف",
+  "browse.comcol.by.subject":   "بالموضوع",
+  "browse.comcol.by.dateissued":"بتاريخ الإصدار",
+}
