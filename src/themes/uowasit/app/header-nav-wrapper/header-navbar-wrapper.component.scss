@@ -1,0 +1,14 @@
+// =============================================================================
+// Header-Navbar Wrapper
+// Handles layout/position of the wrapper div only.
+// Nav item styling lives in navbar.component.scss.
+// =============================================================================
+
+:host {
+  --ds-header-navbar-border-bottom-style: solid var(--ds-header-navbar-border-bottom-height, 3px) var(--ds-header-navbar-border-bottom-color, #3b82f6);
+
+  div#header-navbar-wrapper {
+    position: relative; // required by mobile collapsible navbar
+    border-bottom: var(--ds-header-navbar-border-bottom-style);
+  }
+}

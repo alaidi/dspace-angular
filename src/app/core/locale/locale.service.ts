@@ -37,7 +37,7 @@ import {
 } from '../services/window.service';
 
 export const LANG_COOKIE = 'dsLanguage';
-
+export const RTL_LANGUAGES = ['ar', 'fa', 'he', 'ur', 'yi', 'dv', 'ps'];
 /**
  * This enum defines the possible origin of the languages
  */
@@ -166,7 +166,14 @@ export class LocaleService implements OnDestroy {
   saveLanguageCodeToCookie(lang: string): void {
     this.cookie.set(LANG_COOKIE, lang);
   }
-
+protected applyDirectionality(lang: string): void {
+  const isRtl = RTL_LANGUAGES.includes(lang);
+  this.document.documentElement.dir = isRtl ? 'rtl' : 'ltr';
+  if (this.document.body) {
+    this.document.body.classList.toggle('rtl', isRtl);
+    this.document.body.classList.toggle('ltr', !isRtl);
+  }
+}
   /**
    * Set the language currently used
    *
@@ -175,16 +182,18 @@ export class LocaleService implements OnDestroy {
    */
   setCurrentLanguageCode(lang?: string): void {
     if (isEmpty(lang)) {
-      this.subs.push(this.getCurrentLanguageCode().subscribe(curLang => {
-        lang = curLang;
-        this.translate.use(lang);
-        this.document.documentElement.lang = lang;
-      }));
-    } else {
-      this.saveLanguageCodeToCookie(lang);
+    this.subs.push(this.getCurrentLanguageCode().subscribe(curLang => {
+      lang = curLang;
       this.translate.use(lang);
       this.document.documentElement.lang = lang;
-    }
+      this.applyDirectionality(lang);      // ← sets dir=rtl/ltr on <html>
+    }));
+  } else {
+    this.saveLanguageCodeToCookie(lang);
+    this.translate.use(lang);
+    this.document.documentElement.lang = lang;
+    this.applyDirectionality(lang);        // ← sets dir=rtl/ltr on <html>
+  }
   }
 
   /**

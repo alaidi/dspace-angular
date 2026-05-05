@@ -1,4 +1,5 @@
 {
+
   "401.help": "You're not authorized to access this page. You can use the button below to get back to the home page.",
 
   "401.link.home-page": "Take me to the home page",
@@ -1421,8 +1422,6 @@
 
   "collection.form.correctionSubmissionDefinition": "Submission definition for correction request",
 
-
-
   "collection.listelement.badge": "Collection",
 
   "collection.logo": "Collection logo",
@@ -2203,11 +2202,11 @@
 
   "form.other-information.orcid": "ORCID",
 
+  "form.other-information.person_identifier_orcid": "ORCID iD",
+
   "form.other-information.oairecerif_author_affiliation": "Affiliation",
 
   "form.other-information.oairecerif_editor_affiliation": "Affiliation",
-
-  "form.other-information.person_identifier_orcid": "ORCID iD",
 
   "form.other-information.institution-affiliation-name": "Affiliation(s)",
 
@@ -3155,7 +3154,6 @@
 
   "item.page.relationships.RELATION.Project.researchoutputs": "Publications",
 
-
   "item.page.subject": "Keywords",
 
   "item.page.uri": "URI",
@@ -3196,11 +3194,11 @@
 
   "item.preview.dc.date.issued": "Published date:",
 
-  "item.preview.dc.description": "Description:",
+  "item.preview.dc.description": "Description",
 
   "item.preview.dc.description.abstract": "Abstract:",
 
-  "item.preview.dc.identifier.other": "Other identifier:",
+  "item.preview.dc.identifier.other": "Other Identifier",
 
   "item.preview.dc.language.iso": "Language:",
 
@@ -3698,7 +3696,7 @@
 
   "menu.section.browse_community_by_title": "By Title",
 
-  "menu.section.browse_global": "All of DSpace",
+  "menu.section.browse_global": "Browse DSpace",
 
   "menu.section.browse_global_by_author": "By Author",
 
@@ -4690,7 +4688,7 @@
 
   "repository.title": "DSpace Repository",
 
-  "repository.title.prefix": "DSpace Repository :: ",
+  "repository.title.prefix": "DSpace :: ",
 
   "resource-policies.add.button": "Add",
 
@@ -6250,7 +6248,7 @@
 
   "thumbnail.person.placeholder": "No Profile Picture Available",
 
-  "title": "DSpace",
+  title: "DSpace",
 
   "vocabulary-treeview.header": "Hierarchical tree view",
 
@@ -7887,4 +7885,50 @@
   "bitstream.related.isReplacedBy": "Is replaced by",
 
   "bitstream.related.deleted": "deleted",
+
+  "home.hero.title": "Wasit University Thesis Repository",
+
+  "home.hero.subtitle": "An open-access digital repository preserving and providing worldwide access to academic theses and dissertations from Wasit University, Iraq.",
+
+  "home.hero.btn.browse": "Browse Repository",
+
+  "home.hero.btn.submit": "Submit Thesis",
+
+  "home.hero.search.btn": "Search",
+
+  "home.hero.browse.label": "Browse by",
+
+  "home.stats.theses.count": "5,000+",
+
+  "home.stats.theses.label": "Theses & Dissertations",
+
+  "home.stats.colleges.count": "14",
+
+  "home.stats.colleges.label": "Colleges",
+
+  "home.stats.downloads.count": "120K+",
+
+  "home.stats.downloads.label": "Downloads",
+
+  "home.stats.openaccess.count": "100%",
+
+  "home.stats.openaccess.label": "Open Access",
+
+  "footer.heading.browse": "Browse",
+
+  "footer.heading.info": "Information",
+
+  "footer.heading.about": "Contact",
+
+  "footer.brand.title": "Wasit University Thesis Repository",
+
+  "footer.brand.desc": "An open-access digital repository preserving and providing worldwide access to academic theses and dissertations from Wasit University, Iraq.",
+
+  "footer.brand.org": "Wasit University",
+
+  "footer.powered-by": "Powered by",
+
+  "footer.contact.address1": "Kut, Wasit, Iraq",
+
+  "footer.contact.website": "www.uowasit.edu.iq",
 }

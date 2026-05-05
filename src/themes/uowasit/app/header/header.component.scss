@@ -1,0 +1,136 @@
+// =============================================================================
+// Unified one-row header: Logo | Nav items | Toolbar
+// Uses navy gradient background — all children use light/white colors.
+// =============================================================================
+
+:host {
+  #main-site-header {
+    // Navy gradient — replaces the old separate white header + navy navbar
+    background: var(--ds-navbar-bg) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    min-height: var(--ds-header-height);
+    position: sticky;
+    top: 0;
+    z-index: var(--ds-nav-z-index, 10);
+    transition: box-shadow 0.2s ease;
+
+    @include media-breakpoint-up(md) {
+      height: var(--ds-header-height);
+    }
+  }
+
+  #main-site-header-container {
+    min-height: var(--ds-header-height);
+    gap: 0.5rem;
+  }
+
+  // ── Logo ──────────────────────────────────────────────────────────────────
+
+  img#header-logo {
+    height: var(--ds-header-logo-height);
+    width: auto;
+    display: block;
+    // Invert dark logo to white so it shows on the navy background
+    filter: brightness(0) invert(1);
+    opacity: 0.92;
+    transition: opacity 0.15s ease;
+
+    &:hover { opacity: 1; }
+  }
+
+  // ── Embedded ds-navbar — inline on desktop ────────────────────────────────
+
+  ::ng-deep ds-themed-navbar,
+  ::ng-deep ds-base-navbar {
+    @include media-breakpoint-up(md) {
+      display: flex !important;
+      align-items: stretch;
+
+      nav.navbar {
+        background: transparent !important;
+        box-shadow: none !important;
+        border-bottom: none !important;
+        padding: 0;
+        height: 100%;
+        align-items: stretch;
+
+        .navbar-inner-container {
+          display: flex;
+          align-items: stretch;
+        }
+      }
+    }
+  }
+
+  // ── Toolbar icons (search, lang, login) ───────────────────────────────────
+
+  ::ng-deep #header-right {
+    display: flex;
+    align-items: center;
+    gap: 0.125rem;
+
+    .btn:not(.btn-primary):not(.btn-secondary):not(.btn-success):not(.btn-danger):not(.btn-warning):not(.btn-info),
+    button:not(.btn-primary):not(.btn-secondary):not(.btn-success):not(.btn-danger):not(.btn-warning):not(.btn-info) {
+      color: rgba(255, 255, 255, 0.82) !important;
+      border-radius: 0.5rem;
+      border: 1px solid transparent;
+      padding: 0.375rem 0.625rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      background: transparent;
+      transition: color 0.18s ease, background 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+
+      &:hover {
+        color: #ffffff !important;
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.16);
+        box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      }
+
+      &:focus-visible {
+        outline: 2px solid rgba(96, 165, 250, 0.7);
+        outline-offset: 2px;
+      }
+    }
+
+    // Login / user button — a touch more prominent
+    ds-auth-nav-menu .btn:not(.btn-primary):not(.btn-secondary):not(.btn-success):not(.btn-danger),
+    .dropdownLogin {
+      color: rgba(255, 255, 255, 0.9) !important;
+      background: rgba(255, 255, 255, 0.08) !important;
+      border-color: rgba(255, 255, 255, 0.14) !important;
+      border-radius: 2rem !important;
+      padding-inline: 1rem !important;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.15) !important;
+        border-color: rgba(255, 255, 255, 0.28) !important;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+        color: #ffffff !important;
+      }
+    }
+  }
+
+  // ── Mobile burger toggle ───────────────────────────────────────────────────
+
+  button#navbar-toggler {
+    color: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 0.5rem;
+    padding: 0.375rem 0.55rem;
+    // background: rgba(255, 255, 255, 0.05);
+    transition: background 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+
+    .toggler-icon { transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
+
+    &:hover, &:focus {
+      // color: #ffffff;
+      // background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.35);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+
+      .toggler-icon { transform: scale(1.1); }
+    }
+  }
+}

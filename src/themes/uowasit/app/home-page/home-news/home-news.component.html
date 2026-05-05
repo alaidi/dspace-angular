@@ -1,0 +1,80 @@
+<div class="background-image-container mt-ncs">
+
+  <!-- Animated decorative shapes (CSS-only, aria-hidden) -->
+  <div class="hero-deco" aria-hidden="true">
+    <span class="hero-deco-orb hero-orb-1"></span>
+    <span class="hero-deco-orb hero-orb-2"></span>
+    <span class="hero-deco-orb hero-orb-3"></span>
+    <span class="hero-deco-grid"></span>
+  </div>
+
+  <div class="container">
+    <div class="hero-center">
+
+      <!-- Title -->
+      <h1 class="hero-title hero-anim-1">{{ 'home.hero.title' | translate }}</h1>
+
+      <!-- Subtitle -->
+      <p class="hero-subtitle hero-anim-2">{{ 'home.hero.subtitle' | translate }}</p>
+
+      <!-- Search bar -->
+      <form class="hero-search-form hero-anim-3" (submit)="heroSearch($event)" role="search">
+        <div class="hero-search-wrapper">
+          <i class="fas fa-search hero-search-icon" aria-hidden="true"></i>
+          <input
+            type="search"
+            class="hero-search-input"
+            [placeholder]="'home.search-form.placeholder' | translate"
+            autocomplete="off"
+            aria-label="{{ 'home.search-form.placeholder' | translate }}"
+          />
+          <button type="submit" class="hero-search-btn">
+            {{ 'home.hero.search.btn' | translate }}
+          </button>
+        </div>
+      </form>
+
+      <!-- Quick browse chips -->
+      <div class="hero-quick-links hero-anim-4">
+        <span class="hero-quick-label">{{ 'home.hero.browse.label' | translate }}:</span>
+        <a routerLink="/browse/title">{{ 'browse.comcol.by.title' | translate }}</a>
+        <a routerLink="/browse/author">{{ 'browse.comcol.by.author' | translate }}</a>
+        <a routerLink="/browse/dateissued">{{ 'browse.comcol.by.dateissued' | translate }}</a>
+        <a routerLink="/community-list">{{ 'footer.link.communities' | translate }}</a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Stats strip -->
+<div class="hero-stats-strip">
+  <div class="container">
+    <div class="stats-grid">
+
+      <div class="stat-item stat-anim-1">
+        <span class="stat-number">{{ (itemCount$ | async) || ('home.stats.theses.count' | translate) }}</span>
+        <span class="stat-label">{{ 'home.stats.theses.label' | translate }}</span>
+      </div>
+      <div class="stat-divider" aria-hidden="true"></div>
+
+      <div class="stat-item stat-anim-2">
+        <span class="stat-number">{{ (communityCount$ | async) || ('home.stats.colleges.count' | translate) }}</span>
+        <span class="stat-label">{{ 'home.stats.colleges.label' | translate }}</span>
+      </div>
+      <div class="stat-divider" aria-hidden="true"></div>
+
+      <div class="stat-item stat-anim-3">
+        <span class="stat-number">{{ 'home.stats.downloads.count' | translate }}</span>
+        <span class="stat-label">{{ 'home.stats.downloads.label' | translate }}</span>
+      </div>
+      <div class="stat-divider" aria-hidden="true"></div>
+
+      <div class="stat-item stat-anim-4">
+        <span class="stat-number">{{ 'home.stats.openaccess.count' | translate }}</span>
+        <span class="stat-label">{{ 'home.stats.openaccess.label' | translate }}</span>
+      </div>
+
+    </div>
+  </div>
+</div>

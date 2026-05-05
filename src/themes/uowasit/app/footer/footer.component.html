@@ -1,0 +1,93 @@
+<footer class="ds-footer">
+
+  <!-- Blue accent stripe -->
+  <div class="footer-accent-bar" aria-hidden="true"></div>
+
+  @if (showTopFooter) {
+    <div class="top-footer">
+      <div class="container py-5">
+        <div class="row g-4">
+
+          <!-- Brand / About -->
+          <div class="col-lg-4 col-md-12 mb-2 mb-lg-0">
+            <div class="footer-brand mb-3">
+              <p class="footer-title">{{ 'footer.brand.title' | translate }}</p>
+            </div>
+            <p class="footer-desc">{{ 'footer.brand.desc' | translate }}</p>
+          </div>
+
+          <!-- Browse -->
+          <div class="col-lg-2 col-md-4 col-6">
+            <h6 class="footer-heading">{{ 'footer.heading.browse' | translate }}</h6>
+            <ul class="list-unstyled footer-links">
+              <li><a routerLink="/browse/title">{{ 'browse.comcol.by.title' | translate }}</a></li>
+              <li><a routerLink="/browse/author">{{ 'browse.comcol.by.author' | translate }}</a></li>
+              <li><a routerLink="/browse/subject">{{ 'browse.comcol.by.subject' | translate }}</a></li>
+              <li><a routerLink="/browse/dateissued">{{ 'browse.comcol.by.dateissued' | translate }}</a></li>
+              <li><a routerLink="/community-list">{{ 'footer.link.communities' | translate }}</a></li>
+            </ul>
+          </div>
+
+          <!-- Information -->
+          <div class="col-lg-3 col-md-4 col-6">
+            <h6 class="footer-heading">{{ 'footer.heading.info' | translate }}</h6>
+            <ul class="list-unstyled footer-links">
+              <li><a routerLink="info/accessibility">{{ 'footer.link.accessibility' | translate }}</a></li>
+              @if (showPrivacyPolicy) {
+                <li><a routerLink="info/privacy">{{ 'footer.link.privacy-policy' | translate }}</a></li>
+              }
+              @if (showEndUserAgreement) {
+                <li><a routerLink="info/end-user-agreement">{{ 'footer.link.end-user-agreement' | translate }}</a></li>
+              }
+              @if (showSendFeedback$ | async) {
+                <li><a routerLink="info/feedback">{{ 'footer.link.feedback' | translate }}</a></li>
+              }
+              @if (showCookieSettings) {
+                <li>
+                  <button class="footer-cookie-btn btn btn-link p-0" type="button" (click)="openCookieSettings()">
+                    {{ 'footer.link.cookies' | translate }}
+                  </button>
+                </li>
+              }
+            </ul>
+          </div>
+
+          <!-- Contact -->
+          <div class="col-lg-3 col-md-4">
+            <h6 class="footer-heading">{{ 'footer.heading.about' | translate }}</h6>
+            <p class="footer-desc">
+              {{ 'footer.contact.address1' | translate }}<br>
+              <a class="footer-external-link" href="https://www.uowasit.edu.iq" target="_blank" rel="noopener noreferrer">
+                {{ 'footer.contact.website' | translate }}
+              </a>
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  }
+
+  <!-- Bottom bar -->
+  <div class="bottom-footer">
+    <div class="container">
+      <div class="d-flex flex-column flex-md-row align-items-center justify-content-between gap-2">
+
+        <p class="copyright-text mb-0">
+          &copy; {{ dateObj | date:'y' }} {{ 'footer.brand.org' | translate }}.
+          {{ 'footer.powered-by' | translate }}
+          <a href="https://www.dspace.org/" target="_blank" rel="noopener noreferrer">DSpace</a>
+        </p>
+
+        @if (coarLdnEnabled$ | async) {
+          <a class="coar-notify-badge" routerLink="info/coar-notify-support">
+            <img class="n-coar" src="assets/images/n-coar.svg" [attr.alt]="'menu.header.image.logo' | translate" />
+            {{ 'footer.link.coar-notify-support' | translate }}
+          </a>
+        }
+
+      </div>
+    </div>
+  </div>
+
+</footer>
