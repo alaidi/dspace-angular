@@ -15,6 +15,7 @@ import { ItemSearchResultListElementComponent as BaseComponent } from '../../../
 import { TruncatableComponent } from '../../../../../../../../../app/shared/truncatable/truncatable.component';
 import { TruncatablePartComponent } from '../../../../../../../../../app/shared/truncatable/truncatable-part/truncatable-part.component';
 import { ThemedThumbnailComponent } from '../../../../../../../../../app/thumbnail/themed-thumbnail.component';
+import { MetadataDirective } from '../../../../../../../../../app/shared/metadata.directive';
 
 @listableObjectComponent('PublicationSearchResult', ViewMode.ListElement, Context.Any, 'custom')
 @listableObjectComponent(ItemSearchResult, ViewMode.ListElement, Context.Any, 'custom')
@@ -25,6 +26,7 @@ import { ThemedThumbnailComponent } from '../../../../../../../../../app/thumbna
   // templateUrl: './item-search-result-list-element.component.html',
   templateUrl: '../../../../../../../../../app/shared/object-list/search-result-list-element/item-search-result/item-types/item/item-search-result-list-element.component.html',
   imports: [
+    MetadataDirective,
     AsyncPipe,
     MetadataLinkViewComponent,
     NgClass,

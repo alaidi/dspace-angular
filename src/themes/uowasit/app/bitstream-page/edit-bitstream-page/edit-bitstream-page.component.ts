@@ -13,6 +13,7 @@ import { ThemedLoadingComponent } from '../../../../../app/shared/loading/themed
 import { FileSizePipe } from '../../../../../app/shared/utils/file-size-pipe';
 import { VarDirective } from '../../../../../app/shared/utils/var.directive';
 import { ThemedThumbnailComponent } from '../../../../../app/thumbnail/themed-thumbnail.component';
+import { EditBitstreamPageAlertsComponent } from '../../../../../app/bitstream-page/edit-bitstream-page-alerts/edit-bitstream-page-alerts.component';
 
 @Component({
   selector: 'ds-themed-edit-bitstream-page',
@@ -22,6 +23,7 @@ import { ThemedThumbnailComponent } from '../../../../../app/thumbnail/themed-th
   templateUrl: '../../../../../app/bitstream-page/edit-bitstream-page/edit-bitstream-page.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    EditBitstreamPageAlertsComponent,
     AsyncPipe,
     ErrorComponent,
     FileSizePipe,

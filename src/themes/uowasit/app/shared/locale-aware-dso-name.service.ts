@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { MetadataValue } from '@dspace/core/shared/metadata.models';
 import { TranslateService } from '@ngx-translate/core';
 
 import { DSONameService } from '../../../../app/core/breadcrumbs/dso-name.service';
@@ -36,14 +37,14 @@ export class LocaleAwareDSONameService extends DSONameService {
    * Override getHitHighlights so search results also show localized titles.
    * Falls back to base if no localized title found.
    */
-  override getHitHighlights(object: any, dso: DSpaceObject, escapeHTML?: boolean): string {
+  override getHitHighlights(object: any, dso: DSpaceObject, escapeHTML?: boolean): MetadataValue {
     const currentLang = this.translate.currentLang || this.translate.defaultLang || 'en';
 
     // If not default language, prefer localized title over hit highlights
     if (currentLang !== 'en') {
       const localizedTitle = this.getLocalizedTitle(dso, currentLang, escapeHTML);
       if (localizedTitle) {
-        return localizedTitle;
+        return Object.assign(new MetadataValue(), { value: localizedTitle });
       }
     }
 

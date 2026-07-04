@@ -11,6 +11,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { listableObjectComponent } from '../../../../../../../../app/shared/object-collection/shared/listable-object/listable-object.decorator';
 import { PublicationSidebarSearchListElementComponent as BaseComponent } from '../../../../../../../../app/shared/object-list/sidebar-search-list-element/item-types/publication/publication-sidebar-search-list-element.component';
 import { TruncatablePartComponent } from '../../../../../../../../app/shared/truncatable/truncatable-part/truncatable-part.component';
+import { MetadataDirective } from '../../../../../../../../app/shared/metadata.directive';
 
 @listableObjectComponent('PublicationSearchResult', ViewMode.ListElement, Context.SideBarSearchModal, 'custom')
 @listableObjectComponent('PublicationSearchResult', ViewMode.ListElement, Context.SideBarSearchModalCurrent, 'custom')
@@ -21,6 +22,7 @@ import { TruncatablePartComponent } from '../../../../../../../../app/shared/tru
   // templateUrl: './publication-sidebar-search-list-element.component.html',
   templateUrl: '../../../../../../../../app/shared/object-list/sidebar-search-list-element/sidebar-search-list-element.component.html',
   imports: [
+    MetadataDirective,
     AsyncPipe,
     NgClass,
     TranslateModule,
