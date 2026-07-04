@@ -13,6 +13,7 @@ import { ThemedBadgesComponent } from '../../../../../../../app/shared/object-co
 import { listableObjectComponent } from '../../../../../../../app/shared/object-collection/shared/listable-object/listable-object.decorator';
 import { SearchResultListElementComponent } from '../../../../../../../app/shared/object-list/search-result-list-element/search-result-list-element.component';
 import { LocaleAwareDSONameService } from '../../../locale-aware-dso-name.service';
+import { MetadataDirective } from '../../../../../../../app/shared/metadata.directive';
 
 @Component({
   selector: 'ds-collection-search-result-list-element',
@@ -22,6 +23,7 @@ import { LocaleAwareDSONameService } from '../../../locale-aware-dso-name.servic
   ],
   templateUrl: '../../../../../../../app/shared/object-list/search-result-list-element/collection-search-result/collection-search-result-list-element.component.html',
   imports: [
+    MetadataDirective,
     NgClass,
     RouterLink,
     ThemedBadgesComponent,
