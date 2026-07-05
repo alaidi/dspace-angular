@@ -30,8 +30,7 @@
     height: var(--ds-header-logo-height);
     width: auto;
     display: block;
-    // Invert dark logo to white so it shows on the navy background
-    filter: brightness(0) invert(1);
+    border-radius: 50%;
     opacity: 0.92;
     transition: opacity 0.15s ease;
 
