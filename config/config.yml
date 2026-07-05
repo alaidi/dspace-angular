@@ -1,5 +1,14 @@
+ui:
+  ssl: true
+  host: repository.uowasit.edu.iq
+  port: 443
+  baseUrl: https://repository.uowasit.edu.iq
+  nameSpace: /
+
 rest:
   ssl: true
-  host: sandbox.dspace.org
+  host: repository.uowasit.edu.iq
   port: 443
   nameSpace: /server
+  ssrBaseUrl: https://repository.uowasit.edu.iq/server
+
