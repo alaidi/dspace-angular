@@ -3,7 +3,7 @@
 
     <!-- Logo -->
     <a class="navbar-brand flex-shrink-0" routerLink="/home" role="button" tabindex="0">
-      <img id="header-logo" src="assets/uowasit/images/logo.jpg"
+      <img id="header-logo" [src]="logoSrc" [class.header-logo-round]="translate.currentLang !== 'ar'"
            [attr.alt]="'menu.header.image.logo' | translate"/>
     </a>
 

@@ -30,11 +30,14 @@
     height: var(--ds-header-logo-height);
     width: auto;
     display: block;
-    border-radius: 50%;
     opacity: 0.92;
     transition: opacity 0.15s ease;
 
     &:hover { opacity: 1; }
+
+    &.header-logo-round {
+      border-radius: 50%;
+    }
   }
 
   // ── Embedded ds-navbar — inline on desktop ────────────────────────────────

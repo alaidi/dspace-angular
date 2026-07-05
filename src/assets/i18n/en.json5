@@ -2076,6 +2076,8 @@
 
   "footer.copyright": "copyright © 2002-{{ year }}",
 
+  "footer.link.communities": "Communities & Collections",
+
   "footer.link.accessibility": "Accessibility settings",
 
   "footer.link.dspace": "DSpace software",
