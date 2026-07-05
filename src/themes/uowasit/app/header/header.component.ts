@@ -42,7 +42,7 @@ export class HeaderComponent extends BaseComponent {
 
   get logoSrc(): string {
     return this.translate.currentLang === 'ar'
-      ? 'assets/uowasit/images/logo.ar.png'
-      : 'assets/uowasit/images/logo.en.png';
+      ? 'assets/uowasit/images/logo-ar.png'
+      : 'assets/uowasit/images/logo-en.png';
   }
 }
