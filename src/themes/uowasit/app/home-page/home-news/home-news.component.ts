@@ -6,10 +6,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { HomeNewsComponent as BaseComponent } from '../../../../../app/home-page/home-news/home-news.component';
-import { CommunityDataService } from '../../../../../app/core/data/community-data.service';
-import { PaginatedList } from '../../../../../app/core/data/paginated-list.model';
 import { RemoteData } from '../../../../../app/core/data/remote-data';
-import { Community } from '../../../../../app/core/shared/community.model';
 import { DSpaceObjectType } from '../../../../../app/core/shared/dspace-object-type.model';
 import { Item } from '../../../../../app/core/shared/item.model';
 import { getFirstSucceededRemoteData } from '../../../../../app/core/shared/operators';
@@ -33,11 +30,10 @@ export class HomeNewsComponent extends BaseComponent implements OnInit {
   constructor(
     private router: Router,
     private searchService: SearchService,
-    private communityDataService: CommunityDataService,
     route: ActivatedRoute,
     locale: LocaleService,
   ) {
-    super(route, locale);  // ✅ FIXED: Pass BOTH required arguments
+    super(route, locale);
   }
 
   ngOnInit(): void {
@@ -50,17 +46,19 @@ export class HomeNewsComponent extends BaseComponent implements OnInit {
       map((rd: RemoteData<SearchObjects<Item>>) => this.formatCount(rd.payload?.totalElements)),
     );
 
-    this.communityCount$ = this.communityDataService.findTop(
-      { elementsPerPage: 1, currentPage: 1 },
+    // ponytail: count collections (per-college/department browse units), not the
+    // single top-level community. <Item> generic is only used to read totalElements.
+    this.communityCount$ = this.searchService.search<Item>(
+      new PaginatedSearchOptions({ dsoTypes: [DSpaceObjectType.COLLECTION], pagination }),
     ).pipe(
-      getFirstSucceededRemoteData<PaginatedList<Community>>(),
-      map((rd: RemoteData<PaginatedList<Community>>) => String(rd.payload?.totalElements ?? '')),
+      getFirstSucceededRemoteData<SearchObjects<Item>>(),
+      map((rd: RemoteData<SearchObjects<Item>>) => this.formatCount(rd.payload?.totalElements)),
     );
   }
 
-  /** Format large numbers: 1200 → "1,200+" */
+  /** Format large numbers: 1200 → "1,200+". 0/undefined → '' so the curated i18n fallback shows. */
   private formatCount(n: number | undefined): string {
-    if (n == null) { return ''; }
+    if (!n) { return ''; }
     return n.toLocaleString('en-US') + (n >= 100 ? '+' : '');
   }
 
