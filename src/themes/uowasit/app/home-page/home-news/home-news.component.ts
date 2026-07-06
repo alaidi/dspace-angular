@@ -25,7 +25,6 @@ import { LocaleService } from '../../../../../app/core/locale/locale.service';
 export class HomeNewsComponent extends BaseComponent implements OnInit {
 
   itemCount$: Observable<string>;
-  communityCount$: Observable<string>;
 
   constructor(
     private router: Router,
@@ -41,15 +40,6 @@ export class HomeNewsComponent extends BaseComponent implements OnInit {
 
     this.itemCount$ = this.searchService.search<Item>(
       new PaginatedSearchOptions({ dsoTypes: [DSpaceObjectType.ITEM], pagination }),
-    ).pipe(
-      getFirstSucceededRemoteData<SearchObjects<Item>>(),
-      map((rd: RemoteData<SearchObjects<Item>>) => this.formatCount(rd.payload?.totalElements)),
-    );
-
-    // ponytail: count collections (per-college/department browse units), not the
-    // single top-level community. <Item> generic is only used to read totalElements.
-    this.communityCount$ = this.searchService.search<Item>(
-      new PaginatedSearchOptions({ dsoTypes: [DSpaceObjectType.COLLECTION], pagination }),
     ).pipe(
       getFirstSucceededRemoteData<SearchObjects<Item>>(),
       map((rd: RemoteData<SearchObjects<Item>>) => this.formatCount(rd.payload?.totalElements)),
