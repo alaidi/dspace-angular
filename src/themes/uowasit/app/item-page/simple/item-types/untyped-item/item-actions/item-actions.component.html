@@ -1,0 +1,84 @@
+<div class="item-actions d-flex flex-wrap align-items-center gap-2">
+
+  <!-- Cite -->
+  <button type="button" class="btn btn-action btn-cite" (click)="openCite(citeTpl)">
+    <i class="fas fa-quote-right" aria-hidden="true"></i>
+    <span>{{ 'item.page.cite' | translate }}</span>
+  </button>
+
+  <!-- Share dropdown -->
+  <div ngbDropdown display="dynamic" placement="bottom-start">
+    <button type="button" class="btn btn-action btn-share" ngbDropdownToggle data-bs-toggle="dropdown">
+      <i class="fas fa-share-nodes" aria-hidden="true"></i>
+      <span>{{ 'item.page.share' | translate }}</span>
+    </button>
+    <div ngbDropdownMenu class="dropdown-menu">
+      <button type="button" class="dropdown-item" (click)="copyLink()">
+        <i class="fas fa-link" aria-hidden="true"></i>
+        <span>{{ (linkCopied ? 'item.page.share.copied' : 'item.page.share.copy-link') | translate }}</span>
+      </button>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" [href]="twitterUrl()" target="_blank" rel="noopener">
+        <i class="fab fa-x-twitter" aria-hidden="true"></i>
+        <span>{{ 'item.page.share.x' | translate }}</span>
+      </a>
+      <a class="dropdown-item" [href]="facebookUrl()" target="_blank" rel="noopener">
+        <i class="fab fa-facebook" aria-hidden="true"></i>
+        <span>{{ 'item.page.share.facebook' | translate }}</span>
+      </a>
+      <a class="dropdown-item" [href]="whatsappUrl()" target="_blank" rel="noopener">
+        <i class="fab fa-whatsapp" aria-hidden="true"></i>
+        <span>{{ 'item.page.share.whatsapp' | translate }}</span>
+      </a>
+      <a class="dropdown-item" [href]="telegramUrl()" target="_blank" rel="noopener">
+        <i class="fab fa-telegram" aria-hidden="true"></i>
+        <span>{{ 'item.page.share.telegram' | translate }}</span>
+      </a>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" [href]="emailUrl()">
+        <i class="fas fa-envelope" aria-hidden="true"></i>
+        <span>{{ 'item.page.share.email' | translate }}</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- DOI badge -->
+  @if (doi) {
+    <a class="doi-badge" [href]="'https://doi.org/' + doi" target="_blank" rel="noopener"
+       [title]="'item.page.doi' | translate">
+      <i class="fas fa-barcode" aria-hidden="true"></i>
+      <span>DOI</span>
+      <span class="doi-value">{{ doi }}</span>
+    </a>
+  }
+
+</div>
+
+<!-- Cite modal -->
+<ng-template #citeTpl let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">
+      <i class="fas fa-quote-right me-2" aria-hidden="true"></i>
+      {{ 'item.page.cite.title' | translate }}
+    </h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <p class="citation-text" dir="auto">{{ citationText }}</p>
+  </div>
+  <div class="modal-footer justify-content-between">
+    <span class="copied-indicator" [class.is-visible]="copied">
+      <i class="fas fa-check" aria-hidden="true"></i>
+      {{ 'item.page.cite.copied' | translate }}
+    </span>
+    <div class="d-flex gap-2">
+      <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('Cancel')">
+        {{ 'item.page.cite.close' | translate }}
+      </button>
+      <button type="button" class="btn btn-primary" (click)="copyCitation()">
+        <i class="fas fa-copy me-1" aria-hidden="true"></i>
+        {{ (copied ? 'item.page.cite.copied' : 'item.page.cite.copy') | translate }}
+      </button>
+    </div>
+  </div>
+</ng-template>

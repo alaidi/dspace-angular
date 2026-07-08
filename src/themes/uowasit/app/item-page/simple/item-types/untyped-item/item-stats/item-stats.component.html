@@ -1,0 +1,15 @@
+@if (stats$ | async; as stats) {
+  <div class="item-stats">
+    <div class="stat">
+      <i class="fas fa-eye" aria-hidden="true"></i>
+      <span class="stat-value">{{ stats.views }}</span>
+      <span class="stat-label">{{ 'item.page.views' | translate }}</span>
+    </div>
+    <span class="stat-divider" aria-hidden="true"></span>
+    <div class="stat">
+      <i class="fas fa-download" aria-hidden="true"></i>
+      <span class="stat-value">{{ stats.downloads }}</span>
+      <span class="stat-label">{{ 'item.page.downloads' | translate }}</span>
+    </div>
+  </div>
+}

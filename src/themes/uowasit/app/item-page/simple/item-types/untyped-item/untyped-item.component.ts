@@ -13,14 +13,10 @@ import { CollectionsComponent } from '../../../../../../../app/item-page/field-c
 import { ThemedMediaViewerComponent } from '../../../../../../../app/item-page/media-viewer/themed-media-viewer.component';
 import { MiradorViewerComponent } from '../../../../../../../app/item-page/mirador-viewer/mirador-viewer.component';
 import { ThemedFileSectionComponent } from '../../../../../../../app/item-page/simple/field-components/file-section/themed-file-section.component';
-import { ItemPageAbstractFieldComponent } from '../../../../../../../app/item-page/simple/field-components/specific-field/abstract/item-page-abstract-field.component';
 import { ItemPageDateFieldComponent } from '../../../../../../../app/item-page/simple/field-components/specific-field/date/item-page-date-field.component';
 import { GenericItemPageFieldComponent } from '../../../../../../../app/item-page/simple/field-components/specific-field/generic/generic-item-page-field.component';
-import { GeospatialItemPageFieldComponent } from '../../../../../../../app/item-page/simple/field-components/specific-field/geospatial/geospatial-item-page-field.component';
 import { ThemedItemPageTitleFieldComponent } from '../../../../../../../app/item-page/simple/field-components/specific-field/title/themed-item-page-field.component';
 import { ItemPageUriFieldComponent } from '../../../../../../../app/item-page/simple/field-components/specific-field/uri/item-page-uri-field.component';
-import { AttachmentSectionComponent } from '../../../../../../../app/shared/bitstream-attachment/section/attachment-section.component';
-import { ItemPageLicenseFieldComponent } from '../../../../../../../app/item-page/simple/field-components/specific-field/license/item-page-license-field.component';
 import { UntypedItemComponent as BaseComponent } from '../../../../../../../app/item-page/simple/item-types/untyped-item/untyped-item.component';
 import { ThemedMetadataRepresentationListComponent } from '../../../../../../../app/item-page/simple/metadata-representation-list/themed-metadata-representation-list.component';
 import { DsoEditMenuComponent } from '../../../../../../../app/shared/dso-page/dso-edit-menu/dso-edit-menu.component';
@@ -29,25 +25,26 @@ import { listableObjectComponent } from '../../../../../../../app/shared/object-
 import { ThemedResultsBackButtonComponent } from '../../../../../../../app/shared/results-back-button/themed-results-back-button.component';
 import { ThemedThumbnailComponent } from '../../../../../../../app/thumbnail/themed-thumbnail.component';
 
+import { AbstractTabsComponent } from './abstract-tabs/abstract-tabs.component';
+import { ItemActionsComponent } from './item-actions/item-actions.component';
+import { ItemStatsComponent } from './item-stats/item-stats.component';
+
 @listableObjectComponent(Item, ViewMode.StandalonePage, Context.Any, 'custom')
 @Component({
   selector: 'ds-untyped-item',
-  styleUrls: [
-    '../../../../../../../app/item-page/simple/item-types/untyped-item/untyped-item.component.scss',
-  ],
-  templateUrl: '../../../../../../../app/item-page/simple/item-types/untyped-item/untyped-item.component.html',
+  styleUrls: ['../../../../../../../themes/uowasit/app/item-page/simple/item-types/untyped-item/untyped-item.component.scss'],
+  templateUrl: '../../../../../../../themes/uowasit/app/item-page/simple/item-types/untyped-item/untyped-item.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    AbstractTabsComponent,
     AsyncPipe,
-    AttachmentSectionComponent,
     CollectionsComponent,
     DsoEditMenuComponent,
     GenericItemPageFieldComponent,
-    GeospatialItemPageFieldComponent,
-    ItemPageAbstractFieldComponent,
+    ItemActionsComponent,
     ItemPageDateFieldComponent,
-    ItemPageLicenseFieldComponent,
     ItemPageUriFieldComponent,
+    ItemStatsComponent,
     MetadataFieldWrapperComponent,
     MiradorViewerComponent,
     RouterLink,

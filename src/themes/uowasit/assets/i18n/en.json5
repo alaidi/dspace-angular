@@ -33,4 +33,26 @@
   "footer.powered-by":       "Powered by",
   "footer.contact.address1": "Kut, Wasit, Iraq",
   "footer.contact.website":  "www.uowasit.edu.iq",
+
+  // ---- Item page (untyped / thesis) actions ----------------------------------
+  "item.page.cite":           "Cite",
+  "item.page.cite.title":     "Cite this item",
+  "item.page.cite.copy":      "Copy citation",
+  "item.page.cite.copied":    "Copied!",
+  "item.page.cite.close":     "Close",
+
+  "item.page.share":              "Share",
+  "item.page.share.copy-link":    "Copy link",
+  "item.page.share.copied":       "Link copied!",
+  "item.page.share.x":            "Share on X",
+  "item.page.share.facebook":     "Share on Facebook",
+  "item.page.share.whatsapp":     "Share on WhatsApp",
+  "item.page.share.telegram":     "Share on Telegram",
+  "item.page.share.email":        "Share by email",
+
+  "item.page.views":          "Views",
+  "item.page.downloads":      "Downloads",
+
+  "item.page.abstract.en":    "English",
+  "item.page.abstract.ar":    "العربية",
 }
