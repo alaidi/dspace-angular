@@ -951,6 +951,27 @@ ds-listable-object-component-loader {
     }
   }
 
+  // Thesis (item) results render their own .thesis-card box. Strip this generic
+  // wrapper card so the result isn't double/triple-boxed — recent-submissions
+  // nests two loaders (ds-item-list-element > loader > ds-item-search-result-list-element),
+  // so both wrappers must flatten. Spacing (margin-bottom) is kept.
+  // Communities/collections use different tags and keep the card above.
+  // ponytail: matches the two item wrapper tags by name; in this theme both
+  // always wrap a .thesis-card. If a future item view has no card, drop the box knowingly.
+  > ds-item-search-result-list-element,
+  > ds-item-list-element {
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    padding: 0;
+
+    &:hover {
+      box-shadow: none !important;
+      transform: none;
+      border-color: transparent;
+    }
+  }
+
   // Item title link
   h4 a, h3 a, .item-title a {
     color: $primary;

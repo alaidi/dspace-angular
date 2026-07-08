@@ -16,9 +16,10 @@ import { MarkdownDirective } from '../../../../../../../../app/shared/utils/mark
  * Renders the item abstract with EN/AR tabs when it exists in both languages;
  * otherwise a single plain block (dir="auto").
  *
- * Sources both dc.description.abstract and dc.description: in this repository
- * theses store the English abstract in dc.description.abstract (lang "en")
- * and the Arabic abstract in dc.description (lang "ar").
+ * Metadata layout in this repository:
+ *   - Arabic abstract:  dc.description.abstract (lang "ar"), duplicated in dc.description (lang "ar")
+ *   - English abstract: dc.description.abstractenglish (lang "en")
+ * We pull from all three and de-duplicate, so the Arabic copy isn't shown twice.
  */
 @Component({
   selector: 'ds-uowasit-abstract-tabs',
@@ -74,10 +75,11 @@ export class AbstractTabsComponent {
     if (!this.item) {
       return [];
     }
-    return this.item.allMetadata(['dc.description.abstract', 'dc.description'])
+    const values = this.item.allMetadata(['dc.description.abstract', 'dc.description.abstractenglish', 'dc.description'])
       .filter((md: MetadataValue) => langRegex.test(md.language ?? ''))
       .map((md: MetadataValue) => md.value)
       .filter((v: string) => !!v);
+    return Array.from(new Set(values)); // de-dupe the Arabic copy stored in two fields
   }
 
   private join(values: string[]): string {
