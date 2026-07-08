@@ -1,0 +1,40 @@
+@if (hasAny) {
+
+  @if (hasBoth) {
+    <!-- Bilingual: tabs -->
+    <div class="abstract-block abstract-tabs">
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button type="button" class="nav-link" [class.active]="activeTab === 'en'"
+                  role="tab" (click)="setTab('en')">
+            {{ 'item.page.abstract.en' | translate }}
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button type="button" class="nav-link" [class.active]="activeTab === 'ar'"
+                  role="tab" (click)="setTab('ar')">
+            {{ 'item.page.abstract.ar' | translate }}
+          </button>
+        </li>
+      </ul>
+      <div class="tab-content">
+        @if (activeTab === 'en') {
+          <div class="abstract-pane" dir="ltr" lang="en">
+            <div class="abstract-text" [dsMarkdown]="englishAbstract"></div>
+          </div>
+        }
+        @if (activeTab === 'ar') {
+          <div class="abstract-pane" dir="rtl" lang="ar">
+            <div class="abstract-text" [dsMarkdown]="arabicAbstract"></div>
+          </div>
+        }
+      </div>
+    </div>
+  } @else {
+    <!-- Monolingual: plain render with dir="auto" -->
+    <div class="abstract-block abstract-single">
+      <div class="abstract-text" dir="auto" [dsMarkdown]="singleAbstract.text"></div>
+    </div>
+  }
+
+}

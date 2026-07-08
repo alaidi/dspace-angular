@@ -1,0 +1,145 @@
+@if (showBackButton$ | async) {
+  <ds-results-back-button [back]="back" class="d-block mb-4"></ds-results-back-button>
+}
+
+@if (iiifEnabled) {
+  <div class="row mb-4">
+    <div class="col-12">
+      <ds-mirador-viewer id="iiif-viewer"
+        [object]="object"
+        [searchable]="iiifSearchEnabled"
+        [query]="iiifQuery$ | async">
+      </ds-mirador-viewer>
+    </div>
+  </div>
+}
+
+<!-- ── Header band ──────────────────────────────────────────────────────── -->
+<header class="item-header">
+
+  <div class="item-header__badges d-flex flex-wrap align-items-center gap-2 mb-3">
+    @if (object.firstMetadataValue('dc.type')) {
+      <span class="type-badge">
+        <i class="fas fa-graduation-cap" aria-hidden="true"></i>
+        {{ object.firstMetadataValue('dc.type') }}
+      </span>
+    }
+    @if (object.firstMetadataValue('dc.date.issued')) {
+      <span class="year-badge">
+        <i class="fas fa-calendar" aria-hidden="true"></i>
+        {{ object.firstMetadataValue('dc.date.issued') }}
+      </span>
+    }
+  </div>
+
+  <!-- Title (dir="auto" so Arabic titles align right) -->
+  <div class="item-header__title" dir="auto">
+    <ds-item-page-title-field [item]="object"></ds-item-page-title-field>
+  </div>
+
+  <!-- Authors -->
+  <ds-metadata-representation-list class="ds-item-page-mixed-author-field item-header__authors"
+    [parentItem]="object"
+    [itemType]="'Person'"
+    [metadataFields]="['dc.contributor.author', 'dc.creator']"
+    [label]="'item.page.authors' | translate">
+  </ds-metadata-representation-list>
+
+  <!-- Action row: Cite / Share / DOI -->
+  <div class="item-header__actions d-flex flex-wrap align-items-center justify-content-between gap-3">
+    <ds-uowasit-item-actions [item]="object"></ds-uowasit-item-actions>
+    <ds-dso-edit-menu></ds-dso-edit-menu>
+  </div>
+
+</header>
+
+<!-- ── Two-column layout ────────────────────────────────────────────────── -->
+<div class="row g-4">
+
+  <!-- ── Sidebar ───────────────────────────────────────────────────────── -->
+  <div class="col-12 col-md-4 col-lg-3">
+    <div class="item-sidebar">
+
+      <!-- Thumbnail / media viewer -->
+      @if (!(mediaViewer.image || mediaViewer.video)) {
+        <ds-metadata-field-wrapper [hideIfNoTextContent]="false" class="d-block mb-3">
+          <ds-thumbnail [thumbnail]="object?.thumbnail | async"></ds-thumbnail>
+        </ds-metadata-field-wrapper>
+      }
+      @if (mediaViewer.image || mediaViewer.video) {
+        <div class="mb-3">
+          <ds-media-viewer [item]="object"></ds-media-viewer>
+        </div>
+      }
+
+      <!-- File download section (cards) -->
+      @if (showDownloadLinkAsAttachment !== true) {
+        <div class="download-section mb-3">
+          <ds-item-page-file-section [item]="object"></ds-item-page-file-section>
+        </div>
+      }
+
+      <!-- View / download counts (hides silently if unavailable) -->
+      <div class="mb-3">
+        <ds-uowasit-item-stats [item]="object"></ds-uowasit-item-stats>
+      </div>
+
+      <!-- Compact metadata rows -->
+      <div class="item-meta-sidebar">
+        <ds-item-page-date-field [item]="object"></ds-item-page-date-field>
+        <ds-generic-item-page-field [item]="object"
+          [fields]="['dc.publisher']"
+          [label]="'item.page.publisher'">
+        </ds-generic-item-page-field>
+        <ds-item-page-uri-field [item]="object"
+          [fields]="['dc.identifier.uri']"
+          [label]="'item.page.uri'">
+        </ds-item-page-uri-field>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── Main content ──────────────────────────────────────────────────── -->
+  <div class="col-12 col-md-8 col-lg-9">
+    <div class="item-main-content">
+
+      <!-- Abstract (EN/AR tabs or plain) -->
+      <section class="mb-4">
+        <h2 class="section-title">{{ 'item.page.abstract' | translate }}</h2>
+        <ds-uowasit-abstract-tabs [item]="object"></ds-uowasit-abstract-tabs>
+      </section>
+
+      <!-- Keywords (dc.subject) -->
+      @if (object.allMetadata('dc.subject')?.length) {
+        <section class="keywords-section mb-4">
+          <h2 class="section-title">{{ 'item.page.subject' | translate }}</h2>
+          <div class="chip-list">
+            @for (subject of object.allMetadata('dc.subject'); track subject) {
+              <span class="chip" dir="auto">{{ subject.value }}</span>
+            }
+          </div>
+        </section>
+      }
+
+      <!-- Citation text -->
+      <ds-generic-item-page-field [item]="object"
+        [fields]="['dc.identifier.citation']"
+        [label]="'item.page.citation'">
+      </ds-generic-item-page-field>
+
+      <!-- Collections -->
+      <ds-item-page-collections [item]="object"></ds-item-page-collections>
+
+      <!-- Full record link -->
+      <div class="full-record mt-4">
+        <a class="btn btn-outline-primary" role="button" [routerLink]="[itemPageRoute + '/full']">
+          <i class="fas fa-info-circle me-2" aria-hidden="true"></i>
+          {{ 'item.page.link.full' | translate }}
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+</div>

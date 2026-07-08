@@ -1,0 +1,151 @@
+// Action row: Cite, Share dropdown, DOI badge.
+
+.item-actions {
+  flex-wrap: wrap;
+}
+
+.btn-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.95rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  color: #1e293b;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+  cursor: pointer;
+
+  i { font-size: 0.9em; }
+
+  &:hover {
+    background: #f1f5f9;
+    border-color: #94a3b8;
+    transform: translateY(-1px);
+  }
+
+  &:focus-visible {
+    outline: 2px solid #1e3a5f;
+    outline-offset: 2px;
+  }
+}
+
+.btn-cite {
+  background: linear-gradient(135deg, #1e3a5f 0%, #2d5282 100%);
+  color: #ffffff;
+  border: none;
+  box-shadow: 0 2px 6px rgba(30, 58, 95, 0.3);
+
+  &:hover {
+    background: linear-gradient(135deg, #1e3a5f 0%, #2d5282 100%);
+    filter: brightness(1.1);
+    color: #ffffff;
+  }
+}
+
+.btn-share::after {
+  margin-inline-start: 0.35rem;
+  font-size: 0.7em;
+}
+
+.dropdown-menu {
+  border-radius: 0.625rem;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
+  padding: 0.35rem;
+  min-width: 14rem;
+
+  .dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.4rem;
+    font-size: 0.875rem;
+    color: #334155;
+    cursor: pointer;
+
+    i {
+      width: 1.1rem;
+      text-align: center;
+      color: #64748b;
+    }
+
+    &:hover,
+    &:focus {
+      background: #f1f5f9;
+      color: #0f172a;
+    }
+  }
+
+  .dropdown-divider {
+    margin: 0.3rem 0;
+  }
+}
+
+.doi-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.65rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  background: #ecfdf5;
+  color: #047857;
+  border: 1px solid #a7f3d0;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: background 0.15s ease;
+
+  i { font-size: 0.85em; }
+  .doi-value {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-weight: 500;
+    max-width: 16rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &:hover {
+    background: #d1fae5;
+    color: #065f46;
+    text-decoration: none;
+  }
+}
+
+.copied-indicator {
+  font-size: 0.8rem;
+  color: #16a34a;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+
+  &.is-visible { opacity: 1; }
+}
+
+// ── Cite modal ──────────────────────────────────────────────────────────────
+
+.citation-text {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 1rem;
+  line-height: 1.75;
+  color: #1f2937;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  padding: 1rem 1.25rem;
+  margin: 0;
+}
+
+.modal-footer .btn-primary {
+  background: #1e3a5f;
+  border-color: #1e3a5f;
+  &:hover { background: #2d5282; border-color: #2d5282; }
+}
+
+[dir="rtl"] .modal-footer,
+:host-context([dir="rtl"]) .modal-footer {
+  flex-direction: row-reverse;
+}
