@@ -5,13 +5,20 @@ import {
 } from '@angular/core';
 import { Item } from '@dspace/core/shared/item.model';
 import { MetadataValue } from '@dspace/core/shared/metadata.models';
-import { TranslateModule } from '@ngx-translate/core';
+import {
+  TranslateModule,
+  TranslateService,
+} from '@ngx-translate/core';
 
 import { MarkdownDirective } from '../../../../../../../../app/shared/utils/markdown.directive';
 
 /**
- * Renders dc.description.abstract with EN/AR tabs when abstracts exist
- * in both languages; otherwise a single plain block (dir="auto").
+ * Renders the item abstract with EN/AR tabs when it exists in both languages;
+ * otherwise a single plain block (dir="auto").
+ *
+ * Sources both dc.description.abstract and dc.description: in this repository
+ * theses store the English abstract in dc.description.abstract (lang "en")
+ * and the Arabic abstract in dc.description (lang "ar").
  */
 @Component({
   selector: 'ds-uowasit-abstract-tabs',
@@ -27,7 +34,12 @@ export class AbstractTabsComponent {
 
   @Input() item: Item;
 
-  activeTab: 'en' | 'ar' = 'en';
+  /** Default to the tab matching the current UI language. */
+  activeTab: 'en' | 'ar';
+
+  constructor(translate: TranslateService) {
+    this.activeTab = translate.getCurrentLang()?.startsWith('ar') ? 'ar' : 'en';
+  }
 
   get englishAbstract(): string {
     return this.join(this.valuesFor(/^en/i).concat(this.valuesFor(/^$/)));
@@ -62,7 +74,7 @@ export class AbstractTabsComponent {
     if (!this.item) {
       return [];
     }
-    return this.item.allMetadata('dc.description.abstract')
+    return this.item.allMetadata(['dc.description.abstract', 'dc.description'])
       .filter((md: MetadataValue) => langRegex.test(md.language ?? ''))
       .map((md: MetadataValue) => md.value)
       .filter((v: string) => !!v);

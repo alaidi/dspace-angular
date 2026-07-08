@@ -13,9 +13,9 @@ import { DsoEditMenuComponent } from 'src/app/shared/dso-page/dso-edit-menu/dso-
 import { MetadataFieldWrapperComponent } from 'src/app/shared/metadata-field-wrapper/metadata-field-wrapper.component';
 import { ThemedResultsBackButtonComponent } from 'src/app/shared/results-back-button/themed-results-back-button.component';
 import { ThemedThumbnailComponent } from 'src/app/thumbnail/themed-thumbnail.component';
-import { AuthorityRelatedEntitiesSearchComponent } from '../../../../../../../app/item-page/simple/related-entities/authority-related-entities-search/authority-related-entities-search.component';
 
 import { PersonComponent as BaseComponent } from '../../../../../../../app/entity-groups/research-entities/item-pages/person/person.component';
+import { AuthorityRelatedEntitiesSearchComponent } from '../../../../../../../app/item-page/simple/related-entities/authority-related-entities-search/authority-related-entities-search.component';
 import { listableObjectComponent } from '../../../../../../../app/shared/object-collection/shared/listable-object/listable-object.decorator';
 
 @listableObjectComponent('Person', ViewMode.StandalonePage, Context.Any, 'custom')

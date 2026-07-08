@@ -15,21 +15,22 @@ import { MiradorViewerComponent } from '../../../../../../../app/item-page/mirad
 import { ThemedFileSectionComponent } from '../../../../../../../app/item-page/simple/field-components/file-section/themed-file-section.component';
 import { ItemPageDateFieldComponent } from '../../../../../../../app/item-page/simple/field-components/specific-field/date/item-page-date-field.component';
 import { GenericItemPageFieldComponent } from '../../../../../../../app/item-page/simple/field-components/specific-field/generic/generic-item-page-field.component';
+import { ItemPageLicenseFieldComponent } from '../../../../../../../app/item-page/simple/field-components/specific-field/license/item-page-license-field.component';
 import { ThemedItemPageTitleFieldComponent } from '../../../../../../../app/item-page/simple/field-components/specific-field/title/themed-item-page-field.component';
 import { ItemPageUriFieldComponent } from '../../../../../../../app/item-page/simple/field-components/specific-field/uri/item-page-uri-field.component';
 import { UntypedItemComponent as BaseComponent } from '../../../../../../../app/item-page/simple/item-types/untyped-item/untyped-item.component';
 import { ThemedMetadataRepresentationListComponent } from '../../../../../../../app/item-page/simple/metadata-representation-list/themed-metadata-representation-list.component';
+import { AttachmentSectionComponent } from '../../../../../../../app/shared/bitstream-attachment/section/attachment-section.component';
 import { DsoEditMenuComponent } from '../../../../../../../app/shared/dso-page/dso-edit-menu/dso-edit-menu.component';
 import { MetadataFieldWrapperComponent } from '../../../../../../../app/shared/metadata-field-wrapper/metadata-field-wrapper.component';
 import { listableObjectComponent } from '../../../../../../../app/shared/object-collection/shared/listable-object/listable-object.decorator';
 import { ThemedResultsBackButtonComponent } from '../../../../../../../app/shared/results-back-button/themed-results-back-button.component';
 import { ThemedThumbnailComponent } from '../../../../../../../app/thumbnail/themed-thumbnail.component';
-
 import { AbstractTabsComponent } from './abstract-tabs/abstract-tabs.component';
 import { ItemActionsComponent } from './item-actions/item-actions.component';
 import { ItemStatsComponent } from './item-stats/item-stats.component';
 
-@listableObjectComponent(Item, ViewMode.StandalonePage, Context.Any, 'custom')
+@listableObjectComponent(Item, ViewMode.StandalonePage, Context.Any, 'uowasit')
 @Component({
   selector: 'ds-untyped-item',
   styleUrls: ['../../../../../../../themes/uowasit/app/item-page/simple/item-types/untyped-item/untyped-item.component.scss'],
@@ -38,11 +39,13 @@ import { ItemStatsComponent } from './item-stats/item-stats.component';
   imports: [
     AbstractTabsComponent,
     AsyncPipe,
+    AttachmentSectionComponent,
     CollectionsComponent,
     DsoEditMenuComponent,
     GenericItemPageFieldComponent,
     ItemActionsComponent,
     ItemPageDateFieldComponent,
+    ItemPageLicenseFieldComponent,
     ItemPageUriFieldComponent,
     ItemStatsComponent,
     MetadataFieldWrapperComponent,

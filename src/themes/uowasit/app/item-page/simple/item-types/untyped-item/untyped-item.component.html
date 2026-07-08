@@ -104,9 +104,13 @@
   <div class="col-12 col-md-8 col-lg-9">
     <div class="item-main-content">
 
-      <!-- Abstract (EN/AR tabs or plain) -->
+      <!-- Attachment-style download (only when configured; file section hidden above) -->
+      @if (showDownloadLinkAsAttachment) {
+        <ds-item-page-attachment-section [item]="object"></ds-item-page-attachment-section>
+      }
+
+      <!-- Abstract (EN/AR tabs or plain; renders nothing when the item has no abstract) -->
       <section class="mb-4">
-        <h2 class="section-title">{{ 'item.page.abstract' | translate }}</h2>
         <ds-uowasit-abstract-tabs [item]="object"></ds-uowasit-abstract-tabs>
       </section>
 
@@ -130,6 +134,9 @@
 
       <!-- Collections -->
       <ds-item-page-collections [item]="object"></ds-item-page-collections>
+
+      <!-- License / rights -->
+      <ds-item-page-license-field [item]="object"></ds-item-page-license-field>
 
       <!-- Full record link -->
       <div class="full-record mt-4">

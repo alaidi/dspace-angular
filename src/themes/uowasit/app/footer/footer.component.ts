@@ -22,5 +22,5 @@ import { FooterComponent as BaseComponent } from '../../../../app/footer/footer.
   ],
 })
 export class FooterComponent extends BaseComponent {
-    override showTopFooter = true;
+  override showTopFooter = true;
 }

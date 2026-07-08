@@ -82,15 +82,17 @@
 .item-sidebar {
   position: sticky;
   top: calc(var(--ds-header-height, 72px) + 1.25rem);
-}
 
-::ng-deep ds-thumbnail img,
-::ng-deep .thumbnail img {
-  border-radius: 0.75rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
-  width: 100%;
-  height: auto;
-  display: block;
+  // Scoped under .item-sidebar: a bare ::ng-deep here would leak globally
+  // and restyle every thumbnail site-wide.
+  ::ng-deep ds-thumbnail img,
+  ::ng-deep .thumbnail img {
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+    width: 100%;
+    height: auto;
+    display: block;
+  }
 }
 
 // ── Download section (cards) ─────────────────────────────────────────────────

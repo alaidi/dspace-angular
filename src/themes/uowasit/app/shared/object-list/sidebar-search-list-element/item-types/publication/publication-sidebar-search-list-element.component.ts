@@ -8,10 +8,10 @@ import { ItemSearchResult } from '@dspace/core/shared/object-collection/item-sea
 import { ViewMode } from '@dspace/core/shared/view-mode.model';
 import { TranslateModule } from '@ngx-translate/core';
 
+import { MetadataDirective } from '../../../../../../../../app/shared/metadata.directive';
 import { listableObjectComponent } from '../../../../../../../../app/shared/object-collection/shared/listable-object/listable-object.decorator';
 import { PublicationSidebarSearchListElementComponent as BaseComponent } from '../../../../../../../../app/shared/object-list/sidebar-search-list-element/item-types/publication/publication-sidebar-search-list-element.component';
 import { TruncatablePartComponent } from '../../../../../../../../app/shared/truncatable/truncatable-part/truncatable-part.component';
-import { MetadataDirective } from '../../../../../../../../app/shared/metadata.directive';
 
 @listableObjectComponent('PublicationSearchResult', ViewMode.ListElement, Context.SideBarSearchModal, 'custom')
 @listableObjectComponent('PublicationSearchResult', ViewMode.ListElement, Context.SideBarSearchModalCurrent, 'custom')
@@ -22,8 +22,8 @@ import { MetadataDirective } from '../../../../../../../../app/shared/metadata.d
   // templateUrl: './publication-sidebar-search-list-element.component.html',
   templateUrl: '../../../../../../../../app/shared/object-list/sidebar-search-list-element/sidebar-search-list-element.component.html',
   imports: [
-    MetadataDirective,
     AsyncPipe,
+    MetadataDirective,
     NgClass,
     TranslateModule,
     TruncatablePartComponent,

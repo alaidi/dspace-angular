@@ -7,8 +7,8 @@
   </button>
 
   <!-- Share dropdown -->
-  <div ngbDropdown display="dynamic" placement="bottom-start">
-    <button type="button" class="btn btn-action btn-share" ngbDropdownToggle data-bs-toggle="dropdown">
+  <div ngbDropdown display="dynamic" placement="bottom-start" [autoClose]="'outside'">
+    <button type="button" class="btn btn-action btn-share" ngbDropdownToggle>
       <i class="fas fa-share-nodes" aria-hidden="true"></i>
       <span>{{ 'item.page.share' | translate }}</span>
     </button>

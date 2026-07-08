@@ -1,5 +1,16 @@
 // Abstract block: accent border + tabbed bilingual rendering.
 
+// Section heading lives here (inside the hasAny guard) so items without an
+// abstract don't show an orphan heading.
+.section-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #1e3a5f;
+  margin-bottom: 0.875rem;
+}
+
 .abstract-block {
   background: #f8fafc;
   border-inline-start: 4px solid #1e3a5f;
