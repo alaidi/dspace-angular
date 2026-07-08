@@ -59,7 +59,8 @@ export class ItemActionsComponent {
   }
 
   /**
-   * APA-style citation assembled from available metadata fields.
+   * APA 7 citation assembled from available metadata fields.
+   * Thesis shape: Author. (Year). Title [Type, Institution]. https://doi.org/...
    * Missing fields are skipped gracefully.
    */
   get citationText(): string {
@@ -67,19 +68,30 @@ export class ItemActionsComponent {
       return '';
     }
     const authors = this.item.allMetadataValues(['dc.contributor.author', 'dc.creator']);
-    const year = this.item.firstMetadataValue('dc.date.issued') || 'n.d.';
+    const year = this.item.firstMetadataValue('dc.date.issued')?.substring(0, 4) || 'n.d.';
     const title = this.item.firstMetadataValue('dc.title');
     const publisher = this.item.firstMetadataValue('dc.publisher');
+    const type = this.item.firstMetadataValue('dc.type');
 
     const parts: string[] = [];
     if (authors?.length) {
-      parts.push(authors.join(', '));
+      const names = authors.length > 1
+        ? `${authors.slice(0, -1).join(', ')}, & ${authors[authors.length - 1]}`
+        : authors[0];
+      parts.push(names.endsWith('.') ? names : `${names}.`);
     }
-    parts.push(`(${year})`);
+    parts.push(`(${year}).`);
     if (title) {
-      parts.push(`${title}.`);
-    }
-    if (publisher) {
+      if (type && publisher) {
+        // APA published-thesis form: institution belongs in the bracket, not the publisher slot.
+        parts.push(`${title} [${type}, ${publisher}].`);
+      } else {
+        parts.push(`${title}.`);
+        if (publisher) {
+          parts.push(`${publisher}.`);
+        }
+      }
+    } else if (publisher) {
       parts.push(`${publisher}.`);
     }
     if (this.doi) {
