@@ -1,0 +1,71 @@
+<!--
+  Thesis card (uowasit theme) — used in search results AND home "Recent Submissions".
+  Replaces the plain base list element: drops the repeated university-crest thumbnail,
+  leads with a Thesis type pill + issue year, a prominent title, and structured
+  author / institution rows. RTL is toggled per-card from the title's language.
+-->
+@if (object !== undefined && object !== null) {
+  <article class="thesis-card" [class.thesis-card--rtl]="isRtlTitle">
+    <ds-truncatable [id]="dso.id">
+
+      <div class="tc-top">
+        <span class="tc-type">
+          <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>
+          {{ 'uowasit.thesis-card.type' | translate }}
+        </span>
+        @if (firstMetadataValue('dc.date.issued'); as issued) {
+          <span class="tc-year">
+            <i class="fa-regular fa-calendar" aria-hidden="true"></i>
+            {{ issued | slice:0:4 }}
+          </span>
+        }
+      </div>
+
+      @if (linkType !== linkTypes.None) {
+        <a [target]="(linkType === linkTypes.ExternalLink) ? '_blank' : '_self'"
+           [attr.rel]="(linkType === linkTypes.ExternalLink) ? 'noopener noreferrer' : null"
+           [routerLink]="[itemPageRoute]" class="tc-title dont-break-out"
+           [dsMetadata]="dsoTitle" role="link" tabindex="0"></a>
+      } @else {
+        <span class="tc-title dont-break-out" [dsMetadata]="dsoTitle"></span>
+      }
+
+      <div class="tc-meta">
+        @if (dso.allMetadataValues(authorMetadata, placeholderFilter).length > 0) {
+          <div class="tc-row tc-authors">
+            <i class="fa-solid fa-user-pen" aria-hidden="true"></i>
+            <span>
+              @let collapsed = isCollapsed() | async;
+              @if (collapsed) {
+                @for (author of dso.limitedMetadata(authorMetadata, additionalMetadataLimit, placeholderFilter); track author; let last = $last) {
+                  <ds-metadata-link-view [metadata]="author"></ds-metadata-link-view>
+                  @if (!last) { <span class="tc-sep">؛</span> }
+                }
+              } @else {
+                @for (author of dso.allMetadata(authorMetadata, placeholderFilter); track author; let last = $last) {
+                  <ds-metadata-link-view [metadata]="author"></ds-metadata-link-view>
+                  @if (!last) { <span class="tc-sep">؛</span> }
+                }
+              }
+            </span>
+          </div>
+        }
+        @if (firstMetadataValue('dc.publisher'); as publisher) {
+          <div class="tc-row tc-publisher">
+            <i class="fa-solid fa-building-columns" aria-hidden="true"></i>
+            <span [dsMetadata]="firstMetadata('dc.publisher')"></span>
+          </div>
+        }
+      </div>
+
+      @if (firstMetadataValue('dc.description.abstract')) {
+        <div class="tc-abstract">
+          <ds-truncatable-part [id]="dso.id" [minLines]="3">
+            <span [dsMetadata]="firstMetadata('dc.description.abstract')"></span>
+          </ds-truncatable-part>
+        </div>
+      }
+
+    </ds-truncatable>
+  </article>
+}

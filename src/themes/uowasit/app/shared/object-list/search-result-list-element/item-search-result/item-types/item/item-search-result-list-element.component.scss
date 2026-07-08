@@ -1,0 +1,140 @@
+// =============================================================================
+// Thesis card (uowasit theme) — search results + home "Recent Submissions".
+// Shares the token palette of the untyped-item detail page so list and detail
+// read as one design system. RTL is driven by .thesis-card--rtl (title lang).
+// =============================================================================
+
+.thesis-card {
+  position: relative;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 1.15rem 1.4rem 1.25rem;
+  transition:
+    border-color 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+
+  &:hover {
+    border-color: #9db8d8;
+    box-shadow: 0 10px 30px -8px rgba(30, 58, 95, 0.18);
+    transform: translateY(-2px);
+  }
+}
+
+// ── Top meta row: type pill + issue year ─────────────────────────────────────
+
+.tc-top {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.7rem;
+}
+
+.tc-type {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.42rem;
+  padding: 0.26rem 0.7rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  border-radius: 999px;
+  background: #eef4fb;
+  color: #1e3a5f;
+  border: 1px solid #cdddf0;
+
+  i { font-size: 0.92em; color: #2d5282; }
+}
+
+.tc-year {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-inline-start: auto; // pushes to the far reading-end (LTR + RTL)
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #64748b;
+
+  i { color: #94a3b8; }
+}
+
+// ── Title ────────────────────────────────────────────────────────────────────
+
+.tc-title {
+  display: block;
+  margin: 0 0 0.55rem;
+  font-size: 1.12rem;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: -0.005em;
+  color: #0f172a;
+  text-decoration: none;
+  transition: color 0.15s ease;
+
+  &:hover { color: #1e3a5f; }
+  &:focus-visible { outline: 2px solid #0284c7; outline-offset: 2px; border-radius: 4px; }
+}
+
+// ── Author / institution rows ────────────────────────────────────────────────
+
+.tc-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.32rem;
+  margin-bottom: 0.6rem;
+}
+
+.tc-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  font-size: 0.86rem;
+  line-height: 1.5;
+  color: #475569;
+
+  > i {
+    flex: none;
+    width: 1rem;
+    margin-top: 0.18rem;
+    text-align: center;
+    font-size: 0.85em;
+    color: #94a3b8;
+  }
+
+  ::ng-deep a {
+    color: #0284c7;
+    text-decoration: none;
+    &:hover { text-decoration: underline; }
+  }
+}
+
+.tc-sep { color: #cbd5e1; padding: 0 0.15rem; }
+
+// ── Abstract + "show more" toggle (ds-truncatable-part) ──────────────────────
+
+.tc-abstract {
+  font-size: 0.86rem;
+  line-height: 1.65;
+  color: #64748b;
+
+  ::ng-deep .btn-link {
+    margin-top: 0.5rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #0284c7;
+    text-decoration: none;
+
+    &:hover { color: #1e3a5f; text-decoration: none; }
+  }
+}
+
+// ── RTL (Arabic-title cards) ─────────────────────────────────────────────────
+
+.thesis-card--rtl {
+  direction: rtl;
+  text-align: right;
+
+  .tc-title { font-size: 1.22rem; line-height: 1.75; letter-spacing: 0; }
+  .tc-abstract { line-height: 1.9; }
+}

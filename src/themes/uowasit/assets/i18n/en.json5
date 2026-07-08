@@ -56,4 +56,7 @@
 
   "item.page.abstract.en":    "English",
   "item.page.abstract.ar":    "العربية",
+
+  // ---- Thesis card (search results + recent submissions) ---------------------
+  "uowasit.thesis-card.type": "Thesis",
 }
