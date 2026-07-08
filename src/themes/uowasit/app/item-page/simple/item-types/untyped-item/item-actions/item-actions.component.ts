@@ -69,9 +69,18 @@ export class ItemActionsComponent {
     }
     const authors = this.item.allMetadataValues(['dc.contributor.author', 'dc.creator']);
     const year = this.item.firstMetadataValue('dc.date.issued')?.substring(0, 4) || 'n.d.';
-    const title = this.item.firstMetadataValue('dc.title');
+    // APA for non-English works: original title [English translation]
+    const mainTitle = this.item.firstMetadataValue('dc.title');
+    const altTitle = this.item.firstMetadataValue('dc.title.alternative');
+    const title = mainTitle && altTitle ? `${mainTitle} [${altTitle}]` : (mainTitle ?? altTitle);
     const publisher = this.item.firstMetadataValue('dc.publisher');
-    const type = this.item.firstMetadataValue('dc.type');
+    // thesis.degree.name holds the Arabic degree; map it to the APA work type.
+    const degreeLabels: Record<string, string> = {
+      'ماجستير': 'Master\'s thesis',
+      'دكتوراه': 'Doctoral dissertation',
+    };
+    const degree = this.item.firstMetadataValue('thesis.degree.name');
+    const type = degreeLabels[degree] ?? this.item.firstMetadataValue('dc.type');
 
     const parts: string[] = [];
     if (authors?.length) {
