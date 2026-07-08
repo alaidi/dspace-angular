@@ -153,7 +153,9 @@
     }
 
     // ponytail: static PDF glyph (thesis repo = PDFs); per-MIME icons need a file-section override
-    ds-file-download-link > a::before {
+    // The real <a> lives under ds-themed-file-download-link, not directly under
+    // ds-file-download-link — use a descendant selector, not '>'.
+    ds-file-download-link a::before {
       content: '\f1c1'; // fa-file-pdf
       font-family: 'Font Awesome 6 Free';
       font-weight: 900;
