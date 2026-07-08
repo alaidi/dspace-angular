@@ -45,6 +45,17 @@
     [label]="'item.page.authors' | translate">
   </ds-metadata-representation-list>
 
+  <!-- Supervisor / advisor -->
+  @if (object.allMetadata('dc.contributor.advisor')?.length) {
+    <div class="item-header__advisor" dir="auto">
+      <i class="fas fa-user-tie" aria-hidden="true"></i>
+      <span class="advisor-label">{{ 'item.page.advisor' | translate }}:</span>
+      @for (advisor of object.allMetadata('dc.contributor.advisor'); track advisor) {
+        <span class="advisor-name">{{ advisor.value }}</span>
+      }
+    </div>
+  }
+
   <!-- Action row: Cite / Share / DOI -->
   <div class="item-header__actions d-flex flex-wrap align-items-center justify-content-between gap-3">
     <ds-uowasit-item-actions [item]="object"></ds-uowasit-item-actions>

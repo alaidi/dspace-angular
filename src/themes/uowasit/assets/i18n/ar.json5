@@ -57,6 +57,7 @@
   "browse.comcol.by.dateissued":"بتاريخ الإصدار",
 
   // ---- Item page (untyped / thesis) actions ----------------------------------
+  "item.page.advisor":        "المشرف",
   "item.page.cite":           "استشهاد",
   "item.page.cite.title":     "استشهاد مرجعي",
   "item.page.cite.copy":      "نسخ الاستشهاد",

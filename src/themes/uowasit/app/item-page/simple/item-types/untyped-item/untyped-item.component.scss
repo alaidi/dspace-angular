@@ -58,6 +58,30 @@
   }
 }
 
+// Secondary-language title rendered by the theme title field
+.item-header__title ::ng-deep .item-page-title-alt {
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: #64748b;
+  line-height: 1.5;
+  margin-top: 0.4rem;
+}
+
+.item-header__advisor {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.4rem;
+  font-size: 0.9rem;
+  color: #64748b;
+
+  i { font-size: 0.85em; }
+
+  .advisor-label { font-weight: 600; }
+
+  .advisor-name { color: #334155; }
+}
+
 .item-header__authors {
   ::ng-deep {
     .item-page-field-label,
@@ -126,6 +150,15 @@
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
         border-color: #cbd5e1;
       }
+    }
+
+    // ponytail: static PDF glyph (thesis repo = PDFs); per-MIME icons need a file-section override
+    ds-file-download-link > a::before {
+      content: '\f1c1'; // fa-file-pdf
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      color: #dc2626;
+      margin-inline-end: 0.5rem;
     }
 
     a.btn, a[download], .download-btn {

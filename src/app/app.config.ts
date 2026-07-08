@@ -20,6 +20,7 @@ import {
 } from '@dspace/config/app-config.interface';
 import { StoreDevModules } from '@dspace/config/store/devtools';
 import { AuthInterceptor } from '@dspace/core/auth/auth.interceptor';
+import { DSONameService } from '@dspace/core/breadcrumbs/dso-name.service';
 import { ClientCookieService } from '@dspace/core/cookies/client-cookie.service';
 import { DspaceRestInterceptor } from '@dspace/core/dspace-rest/dspace-rest.interceptor';
 import { LocaleInterceptor } from '@dspace/core/locale/locale.interceptor';
@@ -48,6 +49,7 @@ import { provideEnvironmentNgxMask } from 'ngx-mask';
 import { environment } from '../environments/environment';
 import { HashedFileMapping } from '../modules/dynamic-hash/hashed-file-mapping';
 import { BrowserHashedFileMapping } from '../modules/dynamic-hash/hashed-file-mapping.browser';
+import { LocaleAwareDSONameService } from '../themes/uowasit/app/shared/locale-aware-dso-name.service';
 import { appEffects } from './app.effects';
 import { MENUS } from './app.menus';
 import {
@@ -158,6 +160,12 @@ export const commonAppConfig: ApplicationConfig = {
     {
       provide: HashedFileMapping,
       useClass: BrowserHashedFileMapping,
+    },
+    // uowasit: pick dc.title matching the UI language everywhere
+    // (breadcrumbs, item-page collections, lists), not just themed components
+    {
+      provide: DSONameService,
+      useClass: LocaleAwareDSONameService,
     },
     // register the dynamic matcher used by form. MUST be provided by the app module
     ...DYNAMIC_MATCHER_PROVIDERS,

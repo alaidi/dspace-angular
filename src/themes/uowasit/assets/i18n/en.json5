@@ -35,6 +35,7 @@
   "footer.contact.website":  "www.uowasit.edu.iq",
 
   // ---- Item page (untyped / thesis) actions ----------------------------------
+  "item.page.advisor":        "Supervisor",
   "item.page.cite":           "Cite",
   "item.page.cite.title":     "Cite this item",
   "item.page.cite.copy":      "Copy citation",
