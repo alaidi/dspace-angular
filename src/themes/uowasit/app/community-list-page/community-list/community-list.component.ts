@@ -4,8 +4,8 @@ import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { DSONameService } from '../../../../../app/core/breadcrumbs/dso-name.service';
 import { CommunityListComponent as BaseComponent } from '../../../../../app/community-list-page/community-list/community-list.component';
+import { DSONameService } from '../../../../../app/core/breadcrumbs/dso-name.service';
 import { ThemedLoadingComponent } from '../../../../../app/shared/loading/themed-loading.component';
 import { TruncatableComponent } from '../../../../../app/shared/truncatable/truncatable.component';
 import { TruncatablePartComponent } from '../../../../../app/shared/truncatable/truncatable-part/truncatable-part.component';

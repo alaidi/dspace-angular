@@ -1,26 +1,37 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { Router, RouterLink, ActivatedRoute } from '@angular/router';
+import {
+  Component,
+  OnInit,
+} from '@angular/core';
+import {
+  ActivatedRoute,
+  Router,
+  RouterLink,
+} from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { HomeNewsComponent as BaseComponent } from '../../../../../app/home-page/home-news/home-news.component';
 import { RemoteData } from '../../../../../app/core/data/remote-data';
+import { LocaleService } from '../../../../../app/core/locale/locale.service';
+import { PaginationComponentOptions } from '../../../../../app/core/pagination/pagination-component-options.model';
 import { DSpaceObjectType } from '../../../../../app/core/shared/dspace-object-type.model';
 import { Item } from '../../../../../app/core/shared/item.model';
 import { getFirstSucceededRemoteData } from '../../../../../app/core/shared/operators';
-import { PaginationComponentOptions } from '../../../../../app/core/pagination/pagination-component-options.model';
 import { PaginatedSearchOptions } from '../../../../../app/core/shared/search/models/paginated-search-options.model';
 import { SearchObjects } from '../../../../../app/core/shared/search/models/search-objects.model';
+import { HomeNewsComponent as BaseComponent } from '../../../../../app/home-page/home-news/home-news.component';
 import { SearchService } from '../../../../../app/shared/search/search.service';
-import { LocaleService } from '../../../../../app/core/locale/locale.service';
 
 @Component({
   selector: 'ds-themed-home-news',
   styleUrls: ['../../../../../themes/uowasit/app/home-page/home-news/home-news.component.scss'],
   templateUrl: '../../../../../themes/uowasit/app/home-page/home-news/home-news.component.html',
-  imports: [RouterLink, TranslateModule, AsyncPipe],
+  imports: [
+    AsyncPipe,
+    RouterLink,
+    TranslateModule,
+  ],
 })
 export class HomeNewsComponent extends BaseComponent implements OnInit {
 

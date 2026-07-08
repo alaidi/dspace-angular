@@ -9,8 +9,8 @@ import {
 } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { DSONameService } from '../../../../app/core/breadcrumbs/dso-name.service';
 import { CommunityPageComponent as BaseComponent } from '../../../../app/community-page/community-page.component';
+import { DSONameService } from '../../../../app/core/breadcrumbs/dso-name.service';
 import { fadeInOut } from '../../../../app/shared/animations/fade';
 import { ThemedComcolPageBrowseByComponent } from '../../../../app/shared/comcol/comcol-page-browse-by/themed-comcol-page-browse-by.component';
 import { ThemedComcolPageContentComponent } from '../../../../app/shared/comcol/comcol-page-content/themed-comcol-page-content.component';

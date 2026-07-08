@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { fadeInOut } from '../../../../../../../app/shared/animations/fade';
+import { MetadataDirective } from '../../../../../../../app/shared/metadata.directive';
 import { MetadataLinkViewComponent } from '../../../../../../../app/shared/metadata-link-view/metadata-link-view.component';
 import { ThemedBadgesComponent } from '../../../../../../../app/shared/object-collection/shared/badges/themed-badges.component';
 import { ItemCollectionComponent } from '../../../../../../../app/shared/object-collection/shared/mydspace-item-collection/item-collection.component';
@@ -14,7 +15,6 @@ import { ItemListPreviewComponent as BaseComponent } from '../../../../../../../
 import { TruncatableComponent } from '../../../../../../../app/shared/truncatable/truncatable.component';
 import { TruncatablePartComponent } from '../../../../../../../app/shared/truncatable/truncatable-part/truncatable-part.component';
 import { ThemedThumbnailComponent } from '../../../../../../../app/thumbnail/themed-thumbnail.component';
-import { MetadataDirective } from '../../../../../../../app/shared/metadata.directive';
 
 @Component({
   selector: 'ds-themed-item-list-preview',
@@ -24,10 +24,10 @@ import { MetadataDirective } from '../../../../../../../app/shared/metadata.dire
   templateUrl: '../../../../../../../app/shared/object-list/my-dspace-result-list-element/item-list-preview/item-list-preview.component.html',
   animations: [fadeInOut],
   imports: [
-    MetadataDirective,
     AsyncPipe,
     ItemCollectionComponent,
     ItemSubmitterComponent,
+    MetadataDirective,
     MetadataLinkViewComponent,
     NgClass,
     ThemedBadgesComponent,

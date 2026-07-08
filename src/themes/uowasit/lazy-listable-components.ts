@@ -7,8 +7,8 @@ import { UntypedItemComponent } from './app/item-page/simple/item-types/untyped-
 import { BrowseEntryListElementComponent } from './app/shared/object-list/browse-entry-list-element/browse-entry-list-element.component';
 import { CollectionListElementComponent } from './app/shared/object-list/collection-list-element/collection-list-element.component';
 import { CommunityListElementComponent } from './app/shared/object-list/community-list-element/community-list-element.component';
-import { CommunitySearchResultListElementComponent } from './app/shared/object-list/search-result-list-element/community-search-result/community-search-result-list-element.component';
 import { CollectionSearchResultListElementComponent } from './app/shared/object-list/search-result-list-element/collection-search-result/collection-search-result-list-element.component';
+import { CommunitySearchResultListElementComponent } from './app/shared/object-list/search-result-list-element/community-search-result/community-search-result-list-element.component';
 import { ItemSearchResultListElementComponent } from './app/shared/object-list/search-result-list-element/item-search-result/item-types/item/item-search-result-list-element.component';
 import { PublicationSidebarSearchListElementComponent } from './app/shared/object-list/sidebar-search-list-element/item-types/publication/publication-sidebar-search-list-element.component';
 

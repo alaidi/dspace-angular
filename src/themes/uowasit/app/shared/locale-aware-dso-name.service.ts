@@ -54,7 +54,7 @@ export class LocaleAwareDSONameService extends DSONameService {
 
   private getLocalizedTitle(dso: DSpaceObject, lang: string, escapeHTML?: boolean): string | undefined {
     // Try exact match first (e.g. 'ar')
-    let value = dso.firstMetadataValue('dc.title', { language: lang }, escapeHTML);
+    const value = dso.firstMetadataValue('dc.title', { language: lang }, escapeHTML);
     if (value) {
       return value;
     }

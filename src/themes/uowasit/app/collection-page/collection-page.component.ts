@@ -6,13 +6,12 @@ import {
 import { RouterOutlet } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { DSONameService } from '../../../../app/core/breadcrumbs/dso-name.service';
 import { CollectionPageComponent as BaseComponent } from '../../../../app/collection-page/collection-page.component';
+import { DSONameService } from '../../../../app/core/breadcrumbs/dso-name.service';
 import {
   fadeIn,
   fadeInOut,
 } from '../../../../app/shared/animations/fade';
-import { LocaleAwareDSONameService } from '../shared/locale-aware-dso-name.service';
 import { ThemedComcolPageBrowseByComponent } from '../../../../app/shared/comcol/comcol-page-browse-by/themed-comcol-page-browse-by.component';
 import { ThemedComcolPageContentComponent } from '../../../../app/shared/comcol/comcol-page-content/themed-comcol-page-content.component';
 import { ThemedComcolPageHandleComponent } from '../../../../app/shared/comcol/comcol-page-handle/themed-comcol-page-handle.component';
@@ -22,6 +21,7 @@ import { DsoEditMenuComponent } from '../../../../app/shared/dso-page/dso-edit-m
 import { ErrorComponent } from '../../../../app/shared/error/error.component';
 import { ThemedLoadingComponent } from '../../../../app/shared/loading/themed-loading.component';
 import { VarDirective } from '../../../../app/shared/utils/var.directive';
+import { LocaleAwareDSONameService } from '../shared/locale-aware-dso-name.service';
 
 @Component({
   selector: 'ds-themed-collection-page',

@@ -1,30 +1,34 @@
 @if (hasAny) {
 
+  <h2 class="section-title">{{ 'item.page.abstract' | translate }}</h2>
+
   @if (hasBoth) {
     <!-- Bilingual: tabs -->
     <div class="abstract-block abstract-tabs">
       <ul class="nav nav-tabs" role="tablist">
         <li class="nav-item" role="presentation">
-          <button type="button" class="nav-link" [class.active]="activeTab === 'en'"
-                  role="tab" (click)="setTab('en')">
+          <button type="button" class="nav-link" id="abstract-tab-en" [class.active]="activeTab === 'en'"
+                  role="tab" [attr.aria-selected]="activeTab === 'en'" aria-controls="abstract-pane-en"
+                  (click)="setTab('en')">
             {{ 'item.page.abstract.en' | translate }}
           </button>
         </li>
         <li class="nav-item" role="presentation">
-          <button type="button" class="nav-link" [class.active]="activeTab === 'ar'"
-                  role="tab" (click)="setTab('ar')">
+          <button type="button" class="nav-link" id="abstract-tab-ar" [class.active]="activeTab === 'ar'"
+                  role="tab" [attr.aria-selected]="activeTab === 'ar'" aria-controls="abstract-pane-ar"
+                  (click)="setTab('ar')">
             {{ 'item.page.abstract.ar' | translate }}
           </button>
         </li>
       </ul>
       <div class="tab-content">
         @if (activeTab === 'en') {
-          <div class="abstract-pane" dir="ltr" lang="en">
+          <div class="abstract-pane" id="abstract-pane-en" role="tabpanel" aria-labelledby="abstract-tab-en" dir="ltr" lang="en">
             <div class="abstract-text" [dsMarkdown]="englishAbstract"></div>
           </div>
         }
         @if (activeTab === 'ar') {
-          <div class="abstract-pane" dir="rtl" lang="ar">
+          <div class="abstract-pane" id="abstract-pane-ar" role="tabpanel" aria-labelledby="abstract-tab-ar" dir="rtl" lang="ar">
             <div class="abstract-text" [dsMarkdown]="arabicAbstract"></div>
           </div>
         }

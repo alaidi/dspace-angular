@@ -1,15 +1,18 @@
+import { DOCUMENT } from '@angular/common';
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
+  Inject,
   Input,
   TemplateRef,
 } from '@angular/core';
+import { Item } from '@dspace/core/shared/item.model';
 import {
   NgbDropdownModule,
   NgbModal,
   NgbModalModule,
 } from '@ng-bootstrap/ng-bootstrap';
-import { Item } from '@dspace/core/shared/item.model';
 import { TranslateModule } from '@ngx-translate/core';
 
 /**
@@ -23,8 +26,8 @@ import { TranslateModule } from '@ngx-translate/core';
   styleUrls: ['./item-actions.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    NgbModalModule,
     NgbDropdownModule,
+    NgbModalModule,
     TranslateModule,
   ],
 })
@@ -38,14 +41,21 @@ export class ItemActionsComponent {
   copied = false;
   linkCopied = false;
 
-  constructor(private modalService: NgbModal) {
+  constructor(
+    private modalService: NgbModal,
+    private cdr: ChangeDetectorRef,
+    @Inject(DOCUMENT) private document: Document,
+  ) {
   }
 
   /**
-   * The DOI for this item, if present (rendered as a badge linking to doi.org).
+   * The DOI name for this item, if present (rendered as a badge linking to doi.org).
+   * This repository stores dc.identifier.doi as a full URL, so strip any
+   * doi.org / doi: prefix down to the bare DOI name.
    */
   get doi(): string {
-    return this.item?.firstMetadataValue('dc.identifier.doi');
+    return this.item?.firstMetadataValue('dc.identifier.doi')
+      ?.replace(/^(https?:\/\/(dx\.)?doi\.org\/|doi:)/i, '');
   }
 
   /**
@@ -72,9 +82,8 @@ export class ItemActionsComponent {
     if (publisher) {
       parts.push(`${publisher}.`);
     }
-    const doi = this.item.firstMetadataValue('dc.identifier.doi');
-    if (doi) {
-      parts.push(`https://doi.org/${doi}`);
+    if (this.doi) {
+      parts.push(`https://doi.org/${this.doi}`);
     } else {
       const uri = this.item.firstMetadataValue('dc.identifier.uri');
       if (uri) {
@@ -85,10 +94,14 @@ export class ItemActionsComponent {
   }
 
   /**
-   * Share targets. URLs are built lazily with the current page location.
+   * Canonical URL to share: the item's handle URI when available (stable and
+   * SSR-safe), falling back to the current page URL. Never touch `window`
+   * here — it is undefined during server-side rendering.
    */
   get shareUrl(): string {
-    return window.location.href;
+    return this.item?.firstMetadataValue('dc.identifier.uri')
+      ?? this.document.location?.href
+      ?? '';
   }
 
   get shareTitle(): string {
@@ -124,7 +137,11 @@ export class ItemActionsComponent {
     try {
       await navigator.clipboard.writeText(this.citationText);
       this.copied = true;
-      setTimeout(() => this.copied = false, 2000);
+      this.cdr.markForCheck();
+      setTimeout(() => {
+        this.copied = false;
+        this.cdr.markForCheck();
+      }, 2000);
     } catch {
       // Clipboard may be unavailable (insecure context / permissions); fail silently.
     }
@@ -134,7 +151,11 @@ export class ItemActionsComponent {
     try {
       await navigator.clipboard.writeText(this.shareUrl);
       this.linkCopied = true;
-      setTimeout(() => this.linkCopied = false, 2000);
+      this.cdr.markForCheck();
+      setTimeout(() => {
+        this.linkCopied = false;
+        this.cdr.markForCheck();
+      }, 2000);
     } catch {
       // fail silently
     }

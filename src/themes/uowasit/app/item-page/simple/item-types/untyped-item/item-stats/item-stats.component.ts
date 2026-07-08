@@ -1,9 +1,14 @@
-import { AsyncPipe } from '@angular/common';
+import {
+  AsyncPipe,
+  isPlatformBrowser,
+} from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
+  Inject,
   Input,
   OnInit,
+  PLATFORM_ID,
 } from '@angular/core';
 import { Item } from '@dspace/core/shared/item.model';
 import { UsageReport } from '@dspace/core/statistics/models/usage-report.model';
@@ -46,11 +51,15 @@ export class ItemStatsComponent implements OnInit {
 
   stats$: Observable<ItemStats>;
 
-  constructor(private usageReportService: UsageReportDataService) {
+  constructor(
+    private usageReportService: UsageReportDataService,
+    @Inject(PLATFORM_ID) private platformId: object,
+  ) {
   }
 
   ngOnInit(): void {
-    if (!this.item?.id) {
+    // Client-only nicety: don't delay server-side rendering with stats requests.
+    if (!isPlatformBrowser(this.platformId) || !this.item?.id) {
       this.stats$ = of(null);
       return;
     }
@@ -78,7 +87,7 @@ export class ItemStatsComponent implements OnInit {
       return 0;
     }
     return report.points.reduce((total, point) => {
-      const value = (point.values as unknown as Record<string, number> | Array<{ views: number }>)?.['views'];
+      const value = (point.values as unknown as Record<string, number>)?.views;
       const numeric = typeof value === 'number' ? value : Number(value) || 0;
       return total + numeric;
     }, 0);
