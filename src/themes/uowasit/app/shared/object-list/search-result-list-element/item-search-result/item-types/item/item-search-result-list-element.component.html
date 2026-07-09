@@ -58,10 +58,10 @@
         }
       </div>
 
-      @if (firstMetadataValue('dc.description.abstract')) {
+      @if (localizedAbstract; as abstract) {
         <div class="tc-abstract">
           <ds-truncatable-part [id]="dso.id" [minLines]="3">
-            <span [dsMetadata]="firstMetadata('dc.description.abstract')"></span>
+            <span dir="auto" [dsMetadata]="abstract"></span>
           </ds-truncatable-part>
         </div>
       }

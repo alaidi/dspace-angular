@@ -4,13 +4,18 @@ import {
 } from '@angular/common';
 import {
   Component,
+  inject,
   OnInit,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Context } from '@dspace/core/shared/context.model';
+import { MetadataValue } from '@dspace/core/shared/metadata.models';
 import { ItemSearchResult } from '@dspace/core/shared/object-collection/item-search-result.model';
 import { ViewMode } from '@dspace/core/shared/view-mode.model';
-import { TranslatePipe } from '@ngx-translate/core';
+import {
+  TranslatePipe,
+  TranslateService,
+} from '@ngx-translate/core';
 
 import { MetadataDirective } from '../../../../../../../../../app/shared/metadata.directive';
 import { MetadataLinkViewComponent } from '../../../../../../../../../app/shared/metadata-link-view/metadata-link-view.component';
@@ -37,6 +42,8 @@ import { TruncatablePartComponent } from '../../../../../../../../../app/shared/
   ],
 })
 export class ItemSearchResultListElementComponent extends BaseComponent implements OnInit {
+  private translate = inject(TranslateService);
+
   /**
    * True when the primary title is Arabic, so the whole card flows RTL.
    */
@@ -45,5 +52,18 @@ export class ItemSearchResultListElementComponent extends BaseComponent implemen
   ngOnInit(): void {
     super.ngOnInit();
     this.isRtlTitle = (this.dsoTitle?.language ?? '').toLowerCase().startsWith('ar');
+  }
+
+  /**
+   * Abstract matching the current UI language: Arabic lives in dc.description.abstract,
+   * English in the custom dc.description.abstractenglish. Falls back to whatever exists.
+   */
+  get localizedAbstract(): MetadataValue | undefined {
+    const lang = this.translate.getCurrentLang() || 'en';
+    const all = [
+      ...this.dso.allMetadata('dc.description.abstract'),
+      ...this.dso.allMetadata('dc.description.abstractenglish'),
+    ];
+    return all.find((m) => (m.language ?? '').startsWith(lang)) ?? all[0];
   }
 }
