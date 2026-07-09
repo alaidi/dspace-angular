@@ -1263,3 +1263,99 @@ ds-collection-list-element {
     }
   }
 }
+
+// =============================================================================
+// Search page redesign (uowasit) — items-only results, refined chrome.
+// Scoped to the /search route host (ds-search-page) so embedded community and
+// collection searches are untouched. Logical properties keep it RTL-safe.
+// =============================================================================
+
+ds-search-page {
+  display: block;
+
+  #search-content { padding-top: 0.25rem; }
+
+  // ── Results toolbar: heading + CSV export on one ruled bar ──────────────────
+  ds-search-results {
+    display: block;
+
+    > .d-flex {
+      align-items: center;
+      gap: 1rem;
+      padding-bottom: 0.85rem;
+      margin-bottom: 1.35rem;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: #0f172a;
+
+      // slim gradient tick before the title (reading-start in LTR + RTL)
+      &::before {
+        content: '';
+        display: inline-block;
+        width: 4px;
+        height: 1.05em;
+        margin-inline-end: 0.6rem;
+        vertical-align: -0.15em;
+        background: linear-gradient(180deg, $primary, $info);
+        border-radius: 2px;
+      }
+    }
+
+    ds-search-export-csv .btn {
+      border-radius: 2rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+  }
+
+  // ── Result list: full-width thesis cards, even vertical rhythm ──────────────
+  ds-viewable-collection {
+    ul.list-unstyled { margin-bottom: 0; }
+
+    li {
+      margin-top: 0 !important;
+      margin-bottom: 1rem !important;
+
+      &:last-child { margin-bottom: 0 !important; }
+    }
+
+    // the row is a flex container — let the card fill it
+    ds-listable-object-component-loader {
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+  }
+
+  // ── Filters sidebar: section heading + reset button ─────────────────────────
+  // (the .facet-filter panels are already carded higher up in this file)
+  ds-search-filters {
+    h2, h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #64748b;
+      margin-bottom: 0.9rem;
+    }
+
+    > button.btn-primary {
+      width: 100%;
+      margin-top: 0.5rem;
+      border-radius: 0.6rem;
+      font-weight: 600;
+    }
+  }
+
+  .facet-filter .filter-name .h4 {
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: #0f172a;
+  }
+}
