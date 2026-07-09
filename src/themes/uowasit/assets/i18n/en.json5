@@ -33,6 +33,9 @@
   "footer.powered-by":       "Powered by",
   "footer.contact.address1": "Kut, Wasit, Iraq",
   "footer.contact.website":  "www.uowasit.edu.iq",
+  "footer.university":       "University of Wasit",
+  "footer.designed-by":      "Designed by",
+  "footer.designer-name":    "Abdul Hadi Alaidi",
 
   // ---- Item page (untyped / thesis) actions ----------------------------------
   "item.page.advisor":        "Supervisor",
