@@ -1,0 +1,8 @@
+<!--
+  uowasit: the main /search lists documents (theses), not containers.
+  fixedFilterQuery appends `dsoType=item` to the discover query, so communities
+  and collections (nearly all empty in this repo) never clutter the results.
+-->
+<ds-search [showCsvExport]="true"
+           [trackStatistics]="true"
+           [fixedFilterQuery]="'dsoType=item'"></ds-search>
