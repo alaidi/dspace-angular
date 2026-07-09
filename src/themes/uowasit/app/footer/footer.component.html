@@ -73,12 +73,21 @@
   <!-- Bottom bar -->
   <div class="bottom-footer">
     <div class="container">
-      <div class="d-flex flex-column flex-md-row align-items-center justify-content-between gap-2">
+      <div class="d-flex flex-column flex-md-row align-items-center justify-content-between gap-3">
 
         <p class="copyright-text mb-0">
-          &copy; {{ dateObj | date:'y' }} {{ 'footer.brand.org' | translate }}.
+          &copy; {{ dateObj | date:'y' }}
+          <a class="footer-univ-link" href="https://www.uowasit.edu.iq" target="_blank" rel="noopener noreferrer">{{ 'footer.university' | translate }}</a>.
           {{ 'footer.powered-by' | translate }}
           <a href="https://www.dspace.org/" target="_blank" rel="noopener noreferrer">DSpace</a>
+        </p>
+
+        <p class="designer-credit mb-0">
+          <span class="designed-by">{{ 'footer.designed-by' | translate }}</span>
+          <a class="designer-link" href="https://alaidi.net/about-me/" target="_blank" rel="noopener noreferrer">
+            <i class="fa-solid fa-pen-nib" aria-hidden="true"></i>
+            <span class="designer-name">{{ 'footer.designer-name' | translate }}</span>
+          </a>
         </p>
 
         @if (coarLdnEnabled$ | async) {

@@ -40,6 +40,9 @@
   "footer.powered-by":       "مدعوم من",
   "footer.contact.address1": "الكوت، واسط، العراق",
   "footer.contact.website":  "www.uowasit.edu.iq",
+  "footer.university":       "جامعة واسط",
+  "footer.designed-by":      "تصميم",
+  "footer.designer-name":    "عبد الهادي العايدي",
 
   // ---- Footer links (overrides base) ----------------------------------------
   "footer.link.communities":       "المجتمعات والمجموعات",
