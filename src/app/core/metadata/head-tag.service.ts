@@ -337,7 +337,9 @@ export class HeadTagService {
     if (this.currentObject.value instanceof Item) {
       const doi = this.getMetaTagValue('dc.identifier.doi');
       if (hasValue(doi)) {
-        this.addMetaTag('citation_doi', doi);
+        // Google Scholar and Crossref expect the bare DOI name, but this
+        // repository stores dc.identifier.doi as a full resolver URL — strip it.
+        this.addMetaTag('citation_doi', doi.replace(/^(https?:\/\/(dx\.)?doi\.org\/|doi:)/i, ''));
       }
     }
   }

@@ -42,13 +42,13 @@
     </div>
   </div>
 
-  <!-- DOI badge -->
+  <!-- DOI badge — Crossref recommends displaying the full resolver URL -->
   @if (doi) {
     <a class="doi-badge" [href]="'https://doi.org/' + doi" target="_blank" rel="noopener"
        [title]="'item.page.doi' | translate">
-      <i class="fas fa-barcode" aria-hidden="true"></i>
-      <span>DOI</span>
-      <span class="doi-value">{{ doi }}</span>
+      <i class="fas fa-fingerprint" aria-hidden="true"></i>
+      <span class="doi-label">DOI</span>
+      <span class="doi-value" dir="ltr">https://doi.org/{{ doi }}</span>
     </a>
   }
 
@@ -64,7 +64,30 @@
     <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
   </div>
   <div class="modal-body">
+    <div class="cite-format-toggle" role="group" [attr.aria-label]="'item.page.cite.format' | translate">
+      <button type="button" class="cite-format-btn" [class.active]="citationFormat === 'apa'"
+              (click)="setFormat('apa')">APA</button>
+      <button type="button" class="cite-format-btn" [class.active]="citationFormat === 'ieee'"
+              (click)="setFormat('ieee')">IEEE</button>
+    </div>
     <p class="citation-text" dir="auto">{{ citationText }}</p>
+
+    <!-- Export / download -->
+    <div class="cite-export">
+      <span class="cite-export__label">{{ 'item.page.cite.export' | translate }}</span>
+      <div class="cite-export__buttons">
+        <button type="button" class="cite-export__btn" (click)="download('ris')">
+          <i class="fas fa-file-arrow-down" aria-hidden="true"></i> RIS
+        </button>
+        <button type="button" class="cite-export__btn" (click)="download('bibtex')">
+          <i class="fas fa-file-arrow-down" aria-hidden="true"></i> BibTeX
+        </button>
+        <button type="button" class="cite-export__btn" (click)="download('text')">
+          <i class="fas fa-file-lines" aria-hidden="true"></i> {{ 'item.page.cite.export.text' | translate }}
+        </button>
+      </div>
+      <p class="cite-export__hint">{{ 'item.page.cite.export.hint' | translate }}</p>
+    </div>
   </div>
   <div class="modal-footer justify-content-between">
     <span class="copied-indicator" [class.is-visible]="copied">
