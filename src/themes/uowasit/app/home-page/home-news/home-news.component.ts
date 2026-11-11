@@ -1,6 +1,7 @@
 import { AsyncPipe } from '@angular/common';
 import {
   Component,
+  Inject,
   OnInit,
 } from '@angular/core';
 import {
@@ -8,6 +9,10 @@ import {
   Router,
   RouterLink,
 } from '@angular/router';
+import {
+  APP_CONFIG,
+  AppConfig,
+} from '@dspace/config/app-config.interface';
 import { TranslateModule } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -38,12 +43,13 @@ export class HomeNewsComponent extends BaseComponent implements OnInit {
   itemCount$: Observable<string>;
 
   constructor(
+    @Inject(APP_CONFIG) appConfig: AppConfig,
     private router: Router,
     private searchService: SearchService,
     route: ActivatedRoute,
     locale: LocaleService,
   ) {
-    super(route, locale);
+    super(appConfig, route, locale);
   }
 
   ngOnInit(): void {
