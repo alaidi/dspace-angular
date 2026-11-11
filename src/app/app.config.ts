@@ -25,6 +25,7 @@ import { ClientCookieService } from '@dspace/core/cookies/client-cookie.service'
 import { DspaceRestInterceptor } from '@dspace/core/dspace-rest/dspace-rest.interceptor';
 import { LocaleInterceptor } from '@dspace/core/locale/locale.interceptor';
 import { LogInterceptor } from '@dspace/core/log/log.interceptor';
+import { HeadTagService } from '@dspace/core/metadata/head-tag.service';
 import { DSpaceRouterStateSerializer } from '@dspace/core/ngrx/dspace-router-state-serializer';
 import {
   models,
@@ -50,6 +51,7 @@ import { environment } from '../environments/environment';
 import { HashedFileMapping } from '../modules/dynamic-hash/hashed-file-mapping';
 import { BrowserHashedFileMapping } from '../modules/dynamic-hash/hashed-file-mapping.browser';
 import { LocaleAwareDSONameService } from '../themes/uowasit/app/shared/locale-aware-dso-name.service';
+import { UowasitHeadTagService } from '../themes/uowasit/app/shared/uowasit-head-tag.service';
 import { appEffects } from './app.effects';
 import { MENUS } from './app.menus';
 import {
@@ -155,6 +157,11 @@ export const commonAppConfig: ApplicationConfig = {
     {
       provide: DSONameService,
       useClass: LocaleAwareDSONameService,
+    },
+    // uowasit: Google Scholar / SEO head tags (publication date, canonical, Open Graph)
+    {
+      provide: HeadTagService,
+      useClass: UowasitHeadTagService,
     },
     // register the dynamic matcher used by form. MUST be provided by the app module
     ...DYNAMIC_MATCHER_PROVIDERS,
