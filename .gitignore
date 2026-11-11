@@ -45,3 +45,6 @@ junit.xml
 src/themes/collspec/**/*.*
 .playwright-mcp/
 .zcode/
+
+## ignore the auto-generated decorator registries
+decorator-registries/
